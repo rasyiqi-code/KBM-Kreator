@@ -26,25 +26,25 @@ const services = [{
   description: "Konsultasi dan layanan kreatif custom sesuai kebutuhan proyek spesifik Anda"
 }];
 const Services = () => {
-  return <section className="py-20 px-4 bg-muted/30">
+  return <section className="py-12 md:py-20 px-4 bg-muted/30">
       <div className="container mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-stone-50">
+        <div className="text-center mb-10 md:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 md:mb-4 text-foreground">
             Layanan Kami
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
             Solusi kreatif lengkap untuk menghadirkan karya terbaik Anda
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {services.map((service, index) => <Card key={index} className="group hover:shadow-lg transition-all duration-300 border-border/50 hover:border-primary/30 hover:-translate-y-1">
-              <CardContent className="p-6">
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center mb-4 group-hover:scale-110 transition-transform bg-rose-600">
-                  <service.icon className="w-7 h-7 text-primary-foreground" />
+              <CardContent className="p-5 md:p-6">
+                <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center mb-3 md:mb-4 group-hover:scale-110 transition-transform">
+                  <service.icon className="w-6 h-6 md:w-7 md:h-7 text-primary-foreground" />
                 </div>
-                <h3 className="text-xl font-bold mb-3 text-slate-950">{service.title}</h3>
-                <p className="leading-relaxed text-slate-950">{service.description}</p>
+                <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3 text-foreground">{service.title}</h3>
+                <p className="text-sm md:text-base leading-relaxed text-muted-foreground">{service.description}</p>
               </CardContent>
             </Card>)}
         </div>
