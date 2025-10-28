@@ -1,12 +1,10 @@
 import { Building2, MapPin, Calendar, Award } from "lucide-react";
-
 const About = () => {
-  return (
-    <section className="py-20 px-4">
+  return <section className="py-20 px-4">
       <div className="container mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-white">
               Tentang KBM Kreator
             </h2>
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
@@ -73,8 +71,6 @@ const About = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default About;
