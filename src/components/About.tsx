@@ -7,13 +7,13 @@ const About = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              Tentang Penerbit KBM Indonesia Group
+              Tentang KBM Kreator
             </h2>
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              KBM Kreator adalah bagian dari Penerbit KBM Indonesia Group, penerbit terkemuka yang telah dipercaya oleh ribuan penulis di seluruh Indonesia.
+              KBM Kreator adalah pusat layanan kreatif profesional yang berfokus pada segala kebutuhan kreatif buku Anda. Dari desain cover yang memukau, layout yang rapi, hingga ghost writing berkualitas tinggi.
             </p>
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              Dengan pengalaman lebih dari 7 tahun, kami berkomitmen memberikan layanan terbaik untuk mewujudkan karya impian Anda.
+              Didukung oleh pengalaman sebagai bagian dari Penerbit KBM Indonesia Group sejak 2017, kami memahami betul industri perbukuan dan siap mewujudkan karya impian Anda dengan standar profesional.
             </p>
             
             <div className="space-y-4">
@@ -57,16 +57,16 @@ const About = () => {
             <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary/10 via-secondary/10 to-primary/5 p-8 flex items-center justify-center">
               <div className="text-center space-y-8">
                 <div className="space-y-2">
-                  <div className="text-6xl font-bold text-primary">3,000+</div>
-                  <p className="text-lg text-muted-foreground">Judul Buku Ber-ISBN</p>
+                  <div className="text-6xl font-bold text-primary">500+</div>
+                  <p className="text-lg text-muted-foreground">Proyek Kreatif Selesai</p>
                 </div>
                 <div className="space-y-2">
-                  <div className="text-6xl font-bold text-secondary">200K+</div>
-                  <p className="text-lg text-muted-foreground">Eksemplar Dicetak</p>
+                  <div className="text-6xl font-bold text-secondary">1,000+</div>
+                  <p className="text-lg text-muted-foreground">Desain Cover Dibuat</p>
                 </div>
                 <div className="space-y-2">
-                  <div className="text-6xl font-bold text-primary-dark">2,500+</div>
-                  <p className="text-lg text-muted-foreground">Penulis Bergabung</p>
+                  <div className="text-6xl font-bold text-primary-dark">7+</div>
+                  <p className="text-lg text-muted-foreground">Tahun Pengalaman</p>
                 </div>
               </div>
             </div>

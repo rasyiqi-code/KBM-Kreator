@@ -10,7 +10,7 @@ const Hero = () => {
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-light/20 border border-primary/20 mb-6 animate-fade-in">
             <BookOpen className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium text-primary">Bagian dari Penerbit KBM Indonesia Group</span>
+            <span className="text-sm font-medium text-primary">Layanan Kreatif Profesional untuk Buku</span>
           </div>
           
           <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-primary via-primary-dark to-secondary bg-clip-text text-transparent animate-fade-in-up">
