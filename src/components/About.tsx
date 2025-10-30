@@ -5,13 +5,13 @@ const About = () => {
         <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
           <div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 text-foreground">
-              Tentang KBM Kreator
+              Penerbit & Jasa Desain Buku Yogyakarta
             </h2>
             <p className="text-base md:text-lg text-muted-foreground mb-4 md:mb-6 leading-relaxed">
-              KBM Kreator adalah pusat layanan kreatif profesional yang berfokus pada segala kebutuhan kreatif buku Anda. Dari desain cover yang memukau, layout yang rapi, hingga ghost writing berkualitas tinggi.
+              KBM Kreator Yogyakarta adalah penyedia jasa desain cover buku, jasa layout buku profesional, jasa ghost writing, jasa video promosi buku, dan jasa mockup buku 3D. Kami fokus memberikan solusi kreatif lengkap untuk kebutuhan penerbitan buku Anda.
             </p>
             <p className="text-base md:text-lg text-muted-foreground mb-6 md:mb-8 leading-relaxed">
-              Didukung oleh pengalaman sebagai bagian dari Penerbit KBM Indonesia Group sejak 2017, kami memahami betul industri perbukuan dan siap mewujudkan karya impian Anda dengan standar profesional.
+              Sebagai bagian dari Penerbit KBM Indonesia Group sejak 2017 dan anggota resmi IKAPI (Ikatan Penerbit Indonesia), kami telah menerbitkan 3000+ buku ber-ISBN dengan standar profesional. Tim kami berpengalaman dalam desain grafis, penulisan, dan penerbitan di Yogyakarta.
             </p>
             
             <div className="space-y-3 md:space-y-4">

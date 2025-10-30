@@ -6,10 +6,10 @@ const CTA = () => {
         <div className="max-w-4xl mx-auto">
           <div className="bg-gradient-to-br from-primary via-primary-dark to-secondary rounded-2xl md:rounded-3xl p-6 sm:p-8 md:p-12 text-primary-foreground shadow-2xl">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 text-center">
-              Siap Wujudkan Karya Impian Anda?
+              Butuh Jasa Desain Buku atau Ghost Writer?
             </h2>
             <p className="text-base sm:text-lg md:text-xl mb-6 md:mb-8 opacity-90 text-center">
-              Konsultasikan proyek Anda dengan tim profesional kami. Mari bersama mewujudkan karya terbaik Anda!
+              Konsultasikan proyek buku Anda dengan tim profesional kami. Dari desain cover, layout, penulisan, hingga penerbitan ISBN - kami siap membantu!
             </p>
             
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center mb-8 md:mb-10">

@@ -2,38 +2,38 @@ import { Palette, PenTool, Video, FileImage, Sparkles, Layout } from "lucide-rea
 import { Card, CardContent } from "@/components/ui/card";
 const services = [{
   icon: Layout,
-  title: "Desain Cover & Layout",
-  description: "Ciptakan kesan pertama yang memukau dengan desain cover profesional dan layout buku yang rapi dan estetik"
+  title: "Jasa Desain Cover & Layout Buku",
+  description: "Jasa desain cover buku profesional yang memukau dengan layout buku rapi dan estetik. Desain cover menarik untuk semua genre buku"
 }, {
   icon: PenTool,
-  title: "Ghost Writing",
-  description: "Tim penulis profesional siap membantu mewujudkan ide Anda menjadi karya tulis berkualitas di berbagai bidang"
+  title: "Jasa Ghost Writing Profesional",
+  description: "Ghost writer berpengalaman siap membantu menulis buku Anda. Jasa penulis profesional untuk biografi, novel, non-fiksi, dan berbagai genre"
 }, {
   icon: Video,
-  title: "Video Promosi Buku",
-  description: "Tingkatkan daya tarik buku Anda dengan video promosi yang menarik dan profesional"
+  title: "Jasa Video Promosi Buku",
+  description: "Jasa pembuatan video promosi buku yang menarik dan profesional untuk meningkatkan penjualan dan awareness buku Anda"
 }, {
   icon: FileImage,
-  title: "Mockup Buku",
-  description: "Visualisasi realistis buku Anda sebelum cetak dengan mockup 3D yang memukau"
+  title: "Jasa Mockup Buku 3D",
+  description: "Jasa mockup buku 3D realistis untuk visualisasi buku sebelum cetak. Mockup profesional untuk promosi dan presentasi"
 }, {
   icon: Palette,
-  title: "Desain Grafis",
-  description: "Solusi desain grafis lengkap untuk semua kebutuhan visual proyek Anda"
+  title: "Jasa Desain Grafis Buku",
+  description: "Jasa desain grafis lengkap untuk kebutuhan visual buku: ilustrasi, infografis, banner, dan material promosi"
 }, {
   icon: Sparkles,
-  title: "Layanan Kreatif Lainnya",
-  description: "Konsultasi dan layanan kreatif custom sesuai kebutuhan proyek spesifik Anda"
+  title: "Jasa Penerbitan Buku ISBN",
+  description: "Konsultasi penerbitan buku ber-ISBN melalui Penerbit KBM Indonesia. Self publishing dan indie publishing dengan standar profesional"
 }];
 const Services = () => {
   return <section className="py-12 md:py-20 px-4 bg-muted/30">
       <div className="container mx-auto px-px">
         <div className="text-center mb-10 md:mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 md:mb-4 text-foreground">
-            Layanan Kami
+            Layanan Jasa Desain & Penerbitan Buku
           </h2>
           <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
-            Solusi kreatif lengkap untuk menghadirkan karya terbaik Anda
+            Jasa profesional untuk desain cover, layout, ghost writing, video promosi, mockup buku 3D, dan penerbitan ISBN
           </p>
         </div>
         

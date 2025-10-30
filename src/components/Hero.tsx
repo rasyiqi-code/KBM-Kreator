@@ -8,19 +8,19 @@ const Hero = () => {
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-primary-light/20 border border-primary/20 mb-4 md:mb-6 animate-fade-in">
             <BookOpen className="w-3.5 h-3.5 md:w-4 md:h-4 text-primary" />
-            <span className="text-xs md:text-sm font-medium text-primary">Layanan Kreatif Profesional untuk Buku</span>
+            <span className="text-xs md:text-sm font-medium text-primary">Jasa Desain & Penerbitan Buku Profesional</span>
           </div>
           
           <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-4 md:mb-6 text-foreground animate-fade-in-up">
-            KBM Kreator Yogyakarta
+            Jasa Desain Cover Buku & Ghost Writing Yogyakarta
           </h1>
           
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground mb-6 md:mb-8 max-w-2xl mx-auto animate-fade-in-up animation-delay-200">
-            Wujudkan Karya Terbaik Anda dengan Layanan Kreatif Profesional
+            KBM Kreator - Layanan Layout Buku, Video Promosi & Mockup Profesional
           </p>
           
           <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-8 md:mb-10 max-w-3xl mx-auto animate-fade-in-up animation-delay-300">
-            Dari desain cover hingga ghost writing, kami hadir sebagai partner kreatif yang membantu mewujudkan visi Anda menjadi karya nyata
+            Jasa desain cover buku, layout buku profesional, ghost writer berpengalaman, video promosi buku menarik, dan mockup buku 3D realistis. Bagian dari Penerbit KBM Indonesia - Anggota IKAPI dengan 3000+ buku ber-ISBN
           </p>
           
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center animate-fade-in-up animation-delay-400">
