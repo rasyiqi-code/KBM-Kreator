@@ -27,7 +27,7 @@ const services = [{
 }];
 const Services = () => {
   return <section className="py-12 md:py-20 px-4 bg-muted/30">
-      <div className="container mx-auto">
+      <div className="container mx-auto px-px">
         <div className="text-center mb-10 md:mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 md:mb-4 text-foreground">
             Layanan Kami
@@ -43,8 +43,8 @@ const Services = () => {
                 <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center mb-3 md:mb-4 group-hover:scale-110 transition-transform">
                   <service.icon className="w-6 h-6 md:w-7 md:h-7 text-primary-foreground" />
                 </div>
-                <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3 text-foreground">{service.title}</h3>
-                <p className="text-sm md:text-base leading-relaxed text-muted-foreground">{service.description}</p>
+                <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3 text-slate-950">{service.title}</h3>
+                <p className="text-sm md:text-base leading-relaxed text-slate-950">{service.description}</p>
               </CardContent>
             </Card>)}
         </div>

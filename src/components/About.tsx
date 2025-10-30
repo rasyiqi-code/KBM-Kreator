@@ -1,7 +1,7 @@
 import { Building2, MapPin, Calendar, Award } from "lucide-react";
 const About = () => {
   return <section className="py-12 md:py-20 px-4">
-      <div className="container mx-auto">
+      <div className="container mx-auto px-0">
         <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
           <div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 text-foreground">

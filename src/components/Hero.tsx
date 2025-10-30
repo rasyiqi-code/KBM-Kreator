@@ -4,7 +4,7 @@ const Hero = () => {
   return <section className="relative min-h-[100vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary/5 via-background to-secondary/5 px-4 py-16 md:py-20">
       <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
       
-      <div className="container mx-auto relative z-10">
+      <div className="container mx-auto relative z-10 py-0 px-0">
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-primary-light/20 border border-primary/20 mb-4 md:mb-6 animate-fade-in">
             <BookOpen className="w-3.5 h-3.5 md:w-4 md:h-4 text-primary" />
