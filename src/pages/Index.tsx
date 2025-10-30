@@ -4,6 +4,7 @@ import Services from "@/components/Services";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
+import WhatsAppFloat from "@/components/WhatsAppFloat";
 
 const Index = () => {
   return (
@@ -14,6 +15,7 @@ const Index = () => {
       <WhyChooseUs />
       <CTA />
       <Footer />
+      <WhatsAppFloat />
     </div>
   );
 };
