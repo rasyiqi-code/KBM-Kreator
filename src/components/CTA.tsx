@@ -32,7 +32,7 @@ const CTA = () => {
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="w-3.5 h-3.5 md:w-4 md:h-4" />
-                <span>+62 xxx xxxx xxxx</span>
+                <span>0813-5755-5797</span>
               </div>
             </div>
           </div>

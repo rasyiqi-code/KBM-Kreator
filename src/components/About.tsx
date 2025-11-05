@@ -5,13 +5,16 @@ const About = () => {
         <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
           <div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 text-foreground">
-              Penerbit & Jasa Desain Buku Yogyakarta
+              Partner Kreatif Perusahaan Penerbit di Indonesia
             </h2>
             <p className="text-base md:text-lg text-muted-foreground mb-4 md:mb-6 leading-relaxed">
-              KBM Kreator Yogyakarta adalah penyedia jasa desain cover buku, jasa layout buku profesional, jasa ghost writing, jasa video promosi buku, dan jasa mockup buku 3D. Kami fokus memberikan solusi kreatif lengkap untuk kebutuhan penerbitan buku Anda.
+              KBM Kreator Yogyakarta adalah mitra profesional untuk perusahaan penerbit di Indonesia. Kami menyediakan jasa desain cover buku, layout buku, ghost writing, video promosi buku, dan mockup buku 3D dengan prinsip "Bekerja di Balik Layer" - menjaga privasi dan kepercayaan mitra partner.
+            </p>
+            <p className="text-base md:text-lg text-muted-foreground mb-4 md:mb-6 leading-relaxed">
+              Berdiri sejak 2017 dan fokus ekspansi sejak 2023, kami berlokasi di Depok, Sleman - Yogyakarta. Dengan visi membantu meringankan pekerjaan setiap penerbit buku di Indonesia secara cepat, berintegritas, berkomitmen tinggi dan saling menguntungkan.
             </p>
             <p className="text-base md:text-lg text-muted-foreground mb-6 md:mb-8 leading-relaxed">
-              Sebagai bagian dari Penerbit KBM Indonesia Group sejak 2017 dan anggota resmi IKAPI (Ikatan Penerbit Indonesia), kami telah menerbitkan 3000+ buku ber-ISBN dengan standar profesional. Tim kami berpengalaman dalam desain grafis, penulisan, dan penerbitan di Yogyakarta.
+              <strong>Prinsip Kerja Kami:</strong> Anti sabotase/penyerobotan pelanggan, menjaga privasi mitra partner, dan memudahkan dalam pelayanan. Ada kuantitas - ada fasilitas, ada kuantitas - ada request dan kualitas sultan – harga persahabatan.
             </p>
             
             <div className="space-y-3 md:space-y-4">
@@ -19,7 +22,7 @@ const About = () => {
                 <Calendar className="w-5 h-5 md:w-6 md:h-6 text-primary flex-shrink-0 mt-0.5 md:mt-1" />
                 <div>
                   <h4 className="text-sm md:text-base font-semibold text-foreground mb-0.5 md:mb-1">Didirikan</h4>
-                  <p className="text-sm md:text-base text-muted-foreground">17 Agustus 2017</p>
+                  <p className="text-sm md:text-base text-muted-foreground">2017 | Fokus Ekspansi sejak 2023</p>
                 </div>
               </div>
               
@@ -34,18 +37,18 @@ const About = () => {
               <div className="flex items-start gap-2.5 md:gap-3">
                 <Building2 className="w-5 h-5 md:w-6 md:h-6 text-primary flex-shrink-0 mt-0.5 md:mt-1" />
                 <div>
-                  <h4 className="text-sm md:text-base font-semibold text-foreground mb-0.5 md:mb-1">Pendiri</h4>
-                  <p className="text-sm md:text-base text-muted-foreground">Mohammad Imam Junaidi S.E.I., M.H.</p>
-                  <p className="text-xs md:text-sm text-muted-foreground">(Mohammad IJ / Satrio Imam Panjalu)</p>
+                  <h4 className="text-sm md:text-base font-semibold text-foreground mb-0.5 md:mb-1">Owner & Pendiri</h4>
+                  <p className="text-sm md:text-base text-muted-foreground">Mohammad Imam Junaidi, S.E., M.H.</p>
+                  <p className="text-xs md:text-sm text-muted-foreground">Praktisi Advokasi Hukum, Kepenulisan & Motivasi Literasi</p>
                 </div>
               </div>
               
               <div className="flex items-start gap-2.5 md:gap-3">
                 <Award className="w-5 h-5 md:w-6 md:h-6 text-primary flex-shrink-0 mt-0.5 md:mt-1" />
                 <div>
-                  <h4 className="text-sm md:text-base font-semibold text-foreground mb-0.5 md:mb-1">Anggota Resmi</h4>
-                  <p className="text-sm md:text-base text-muted-foreground">IKAPI (Ikatan Penerbit Indonesia)</p>
-                  <p className="text-xs md:text-sm text-muted-foreground">Hak legal memproses HAKI melalui KEMENKUMHAM RI</p>
+                  <h4 className="text-sm md:text-base font-semibold text-foreground mb-0.5 md:mb-1">Komitmen</h4>
+                  <p className="text-sm md:text-base text-muted-foreground">Working Behind The Scenes</p>
+                  <p className="text-xs md:text-sm text-muted-foreground">Menjaga privasi & kepercayaan mitra partner</p>
                 </div>
               </div>
             </div>
