@@ -13,11 +13,9 @@ const Hero = () => {
           
           <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-4 md:mb-6 text-foreground animate-fade-in-up">1.    Jasa Desain Layout, Pembuatan Sampul, Cetak Buku, Album Foto & Pdf</h1>
           
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground mb-6 md:mb-8 max-w-2xl mx-auto animate-fade-in-up animation-delay-200">1.    KBM Kreator Yogyakarta berani memberikan klaim garansi sebesar Rp 5.000.000 per naskah</p>
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground mb-6 md:mb-8 max-w-2xl mx-auto animate-fade-in-up animation-delay-200">KBM Kreator Yogyakarta berani memberikan klaim garansi sebesar Rp 5.000.000 per naskah</p>
           
-          <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-8 md:mb-10 max-w-3xl mx-auto animate-fade-in-up animation-delay-300">
-            Jasa desain cover buku, layout buku profesional, ghost writer berpengalaman, video promosi buku menarik, dan mockup buku 3D realistis. Bagian dari Penerbit KBM Indonesia - Anggota IKAPI dengan 3000+ buku ber-ISBN
-          </p>
+          <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-8 md:mb-10 max-w-3xl mx-auto animate-fade-in-up animation-delay-300">1.    Mitra & Partner terbaik untuk perusahaan Penerbit Buku di Indonesia</p>
           
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center animate-fade-in-up animation-delay-400">
             <Button size="lg" className="w-full sm:w-auto min-h-[48px] text-base md:text-lg group">
