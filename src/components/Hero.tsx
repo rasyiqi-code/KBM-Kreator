@@ -6,18 +6,14 @@ const Hero = () => {
       
       <div className="container mx-auto relative z-10 py-0 px-0">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-primary-light/20 border border-primary/20 mb-4 md:mb-6 animate-fade-in">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-primary-light/20 border border-primary/20 mb-4 md:mb-6 animate-fade-in bg-slate-50">
             <BookOpen className="w-3.5 h-3.5 md:w-4 md:h-4 text-primary" />
-            <span className="text-xs md:text-sm font-medium text-primary">Jasa Desain & Penerbitan Buku Profesional</span>
+            <span className="text-xs md:text-sm font-medium text-primary">1.    Professional sejak 2017</span>
           </div>
           
-          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-4 md:mb-6 text-foreground animate-fade-in-up">
-            Jasa Desain Cover Buku & Ghost Writing Yogyakarta
-          </h1>
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-4 md:mb-6 text-foreground animate-fade-in-up">1.    Jasa Desain Layout, Pembuatan Sampul, Cetak Buku, Album Foto & Pdf</h1>
           
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground mb-6 md:mb-8 max-w-2xl mx-auto animate-fade-in-up animation-delay-200">
-            KBM Kreator - Layanan Layout Buku, Video Promosi & Mockup Profesional
-          </p>
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground mb-6 md:mb-8 max-w-2xl mx-auto animate-fade-in-up animation-delay-200">1.    KBM Kreator Yogyakarta berani memberikan klaim garansi sebesar Rp 5.000.000 per naskah</p>
           
           <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-8 md:mb-10 max-w-3xl mx-auto animate-fade-in-up animation-delay-300">
             Jasa desain cover buku, layout buku profesional, ghost writer berpengalaman, video promosi buku menarik, dan mockup buku 3D realistis. Bagian dari Penerbit KBM Indonesia - Anggota IKAPI dengan 3000+ buku ber-ISBN
