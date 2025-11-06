@@ -1,4 +1,4 @@
-import { Building2, MapPin, Calendar, Award } from "lucide-react";
+import { Building2, MapPin, Calendar, Award, Shield, ShieldCheck, Lock, Sparkles } from "lucide-react";
 const About = () => {
   return <section className="py-12 md:py-20 px-4">
       <div className="container mx-auto px-0">
@@ -17,24 +17,73 @@ const About = () => {
               <strong>MISI:</strong> Ada kuantitas - ada fasilitas, Ada kuantitas - ada request dan kualitas sultan – harga persahabatan.
             </p>
             
-            <div className="bg-muted/30 rounded-xl p-4 md:p-6 mb-6 md:mb-8">
-              <h3 className="text-lg md:text-xl font-bold text-foreground mb-3 md:mb-4">Prinsip Kerja Kami</h3>
-              <div className="space-y-3 md:space-y-4">
-                <div>
-                  <h4 className="text-sm md:text-base font-semibold text-primary mb-1">1. "BEKERJA DIBALIK LAYER (working behind the scenes)"</h4>
-                  <p className="text-sm md:text-base text-muted-foreground">Siapa pun mitra partner kami maka privasinya akan kami jaga. Dan label, serta logo termasuk identitas dari KBM Kreator Yogyakarta tidak akan pernah kami munculkan pada lembar naskah / kerja / jobs yang diberikan oleh mitra partner.</p>
+            <div className="mb-6 md:mb-8">
+              <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-6 md:mb-8 text-center">
+                Prinsip Kerja Kami
+              </h3>
+              <div className="grid gap-4 md:gap-6">
+                <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary/5 via-background to-secondary/5 border border-border/50 p-5 md:p-6 transition-all duration-300 hover:shadow-lg hover:border-primary/30">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                      <Shield className="w-6 h-6 md:w-7 md:h-7 text-primary" />
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-base md:text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                        Working Behind The Scenes
+                      </h4>
+                      <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+                        Siapa pun mitra partner kami maka privasinya akan kami jaga. Label, logo, dan identitas KBM Kreator Yogyakarta tidak akan pernah kami munculkan pada lembar naskah atau jobs yang diberikan oleh mitra partner.
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="text-sm md:text-base font-semibold text-primary mb-1">2. "ANTI SABOTASE / PENYEROBOTAN / PENCURIAN PELANGGAN"</h4>
-                  <p className="text-sm md:text-base text-muted-foreground">Karena yang terpenting bagi kami adalah kepercayaan milik mitra partner. Kepercayaan itu akan melahirkan kerjasama dengan komitmen tinggi. Dan komitmen tinggi akan membuat kerjasama berlangsung sangat lama.</p>
+
+                <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-secondary/5 via-background to-primary/5 border border-border/50 p-5 md:p-6 transition-all duration-300 hover:shadow-lg hover:border-primary/30">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-xl bg-secondary/10 flex items-center justify-center group-hover:bg-secondary/20 transition-colors">
+                      <ShieldCheck className="w-6 h-6 md:w-7 md:h-7 text-secondary" />
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-base md:text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                        Anti Sabotase & Pencurian Pelanggan
+                      </h4>
+                      <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+                        Kepercayaan mitra partner adalah yang terpenting bagi kami. Kepercayaan melahirkan kerjasama dengan komitmen tinggi, dan komitmen tinggi membuat kerjasama berlangsung sangat lama.
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="text-sm md:text-base font-semibold text-primary mb-1">3. "MENJAGA PRIVASI MITRA PARTNER"</h4>
-                  <p className="text-sm md:text-base text-muted-foreground">Kami tidak pernah membocorkan siapa saja penerbit yang bekerjasama dengan KBM Kreator Yogyakarta kecuali atas ijin Penerbit terkait. Melalui prinsip ini, sudah ada ratusan penerbit yang bekerja sama, puluhan ribu cetakan buku, ribuan layout dan desain sampul serta berbagai pelayanan lainnya.</p>
+
+                <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary/5 via-background to-secondary/5 border border-border/50 p-5 md:p-6 transition-all duration-300 hover:shadow-lg hover:border-primary/30">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                      <Lock className="w-6 h-6 md:w-7 md:h-7 text-primary" />
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-base md:text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                        Menjaga Privasi Mitra Partner
+                      </h4>
+                      <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+                        Kami tidak pernah membocorkan penerbit yang bekerjasama kecuali atas ijin mereka. Ratusan penerbit, puluhan ribu cetakan buku, dan ribuan layout telah dipercayakan kepada kami.
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="text-sm md:text-base font-semibold text-primary mb-1">4. "MEMUDAHKAN DALAM PELAYANAN"</h4>
-                  <p className="text-sm md:text-base text-muted-foreground">Apabila branding atau bendera perusahaan mitra partner kami naik karena kerjasama yang kami berikan selalu memberikan pelayanan apa pun yang sifatnya memudahkan, maka sudah pasti omset kami pun ikutan naik.</p>
+
+                <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-secondary/5 via-background to-primary/5 border border-border/50 p-5 md:p-6 transition-all duration-300 hover:shadow-lg hover:border-primary/30">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-xl bg-secondary/10 flex items-center justify-center group-hover:bg-secondary/20 transition-colors">
+                      <Sparkles className="w-6 h-6 md:w-7 md:h-7 text-secondary" />
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-base md:text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                        Memudahkan Dalam Pelayanan
+                      </h4>
+                      <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+                        Ketika branding mitra partner kami naik karena pelayanan yang memudahkan, omset kami pun ikut naik. Saling menguntungkan adalah kunci kesuksesan bersama.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
