@@ -8,14 +8,14 @@ const Hero = () => {
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-primary-light/20 border border-primary/20 mb-4 md:mb-6 animate-fade-in bg-slate-50">
             <BookOpen className="w-3.5 h-3.5 md:w-4 md:h-4 text-primary" />
-            <span className="text-xs md:text-sm font-medium text-primary">1.    Professional sejak 2017</span>
+            <span className="text-xs md:text-sm font-medium text-primary">Professional sejak 2017</span>
           </div>
           
-          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-4 md:mb-6 text-foreground animate-fade-in-up">1.    Jasa Desain Layout, Pembuatan Sampul, Cetak Buku, Album Foto & Pdf</h1>
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-4 md:mb-6 text-foreground animate-fade-in-up">Jasa Desain Layout, Pembuatan Sampul, Cetak Buku, Album Foto & Pdf</h1>
           
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground mb-6 md:mb-8 max-w-2xl mx-auto animate-fade-in-up animation-delay-200">KBM Kreator Yogyakarta berani memberikan klaim garansi sebesar Rp 5.000.000 per naskah</p>
           
-          <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-8 md:mb-10 max-w-3xl mx-auto animate-fade-in-up animation-delay-300">1.    Mitra & Partner terbaik untuk perusahaan Penerbit Buku di Indonesia</p>
+          <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-8 md:mb-10 max-w-3xl mx-auto animate-fade-in-up animation-delay-300">Mitra & Partner terbaik untuk perusahaan Penerbit Buku di Indonesia</p>
           
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center animate-fade-in-up animation-delay-400">
             <Button size="lg" className="w-full sm:w-auto min-h-[48px] text-base md:text-lg group">
