@@ -8,14 +8,36 @@ const About = () => {
               Partner Kreatif Perusahaan Penerbit di Indonesia
             </h2>
             <p className="text-base md:text-lg text-muted-foreground mb-4 md:mb-6 leading-relaxed">
-              KBM Kreator Yogyakarta adalah mitra profesional untuk perusahaan penerbit di Indonesia. Kami menyediakan jasa desain cover buku, layout buku, ghost writing, video promosi buku, dan mockup buku 3D dengan prinsip "Bekerja di Balik Layer" - menjaga privasi dan kepercayaan mitra partner.
+              KBM Kreator Yogyakarta berdiri sejak 2017 dan mulai fokus pengembangan serta ekspansi bisnis sejak 2023. Lokasi kantor yang berdiri di Depok, Sleman - Yogyakarta sangat didukung dengan mudahnya mencari tenaga kerja yang profesional, peralatan dan mesin yang mumpuni, dan bahan berbagai baku yang cukup mudah didapat dengan harga teman dekat.
             </p>
             <p className="text-base md:text-lg text-muted-foreground mb-4 md:mb-6 leading-relaxed">
-              Berdiri sejak 2017 dan fokus ekspansi sejak 2023, kami berlokasi di Depok, Sleman - Yogyakarta. Dengan visi membantu meringankan pekerjaan setiap penerbit buku di Indonesia secara cepat, berintegritas, berkomitmen tinggi dan saling menguntungkan.
+              <strong>VISI:</strong> "Berusaha Membantu Meringankan Pekerjaan Setiap Penerbit Buku di Indonesia Secara Cepat, Berintegritas - Berkomitmen Tinggi Dan Saling Menguntungkan."
             </p>
-            <p className="text-base md:text-lg text-muted-foreground mb-6 md:mb-8 leading-relaxed">
-              <strong>Prinsip Kerja Kami:</strong> Anti sabotase/penyerobotan pelanggan, menjaga privasi mitra partner, dan memudahkan dalam pelayanan. Ada kuantitas - ada fasilitas, ada kuantitas - ada request dan kualitas sultan – harga persahabatan.
+            <p className="text-base md:text-lg text-muted-foreground mb-4 md:mb-6 leading-relaxed">
+              <strong>MISI:</strong> Ada kuantitas - ada fasilitas, Ada kuantitas - ada request dan kualitas sultan – harga persahabatan.
             </p>
+            
+            <div className="bg-muted/30 rounded-xl p-4 md:p-6 mb-6 md:mb-8">
+              <h3 className="text-lg md:text-xl font-bold text-foreground mb-3 md:mb-4">Prinsip Kerja Kami</h3>
+              <div className="space-y-3 md:space-y-4">
+                <div>
+                  <h4 className="text-sm md:text-base font-semibold text-primary mb-1">1. "BEKERJA DIBALIK LAYER (working behind the scenes)"</h4>
+                  <p className="text-sm md:text-base text-muted-foreground">Siapa pun mitra partner kami maka privasinya akan kami jaga. Dan label, serta logo termasuk identitas dari KBM Kreator Yogyakarta tidak akan pernah kami munculkan pada lembar naskah / kerja / jobs yang diberikan oleh mitra partner.</p>
+                </div>
+                <div>
+                  <h4 className="text-sm md:text-base font-semibold text-primary mb-1">2. "ANTI SABOTASE / PENYEROBOTAN / PENCURIAN PELANGGAN"</h4>
+                  <p className="text-sm md:text-base text-muted-foreground">Karena yang terpenting bagi kami adalah kepercayaan milik mitra partner. Kepercayaan itu akan melahirkan kerjasama dengan komitmen tinggi. Dan komitmen tinggi akan membuat kerjasama berlangsung sangat lama.</p>
+                </div>
+                <div>
+                  <h4 className="text-sm md:text-base font-semibold text-primary mb-1">3. "MENJAGA PRIVASI MITRA PARTNER"</h4>
+                  <p className="text-sm md:text-base text-muted-foreground">Kami tidak pernah membocorkan siapa saja penerbit yang bekerjasama dengan KBM Kreator Yogyakarta kecuali atas ijin Penerbit terkait. Melalui prinsip ini, sudah ada ratusan penerbit yang bekerja sama, puluhan ribu cetakan buku, ribuan layout dan desain sampul serta berbagai pelayanan lainnya.</p>
+                </div>
+                <div>
+                  <h4 className="text-sm md:text-base font-semibold text-primary mb-1">4. "MEMUDAHKAN DALAM PELAYANAN"</h4>
+                  <p className="text-sm md:text-base text-muted-foreground">Apabila branding atau bendera perusahaan mitra partner kami naik karena kerjasama yang kami berikan selalu memberikan pelayanan apa pun yang sifatnya memudahkan, maka sudah pasti omset kami pun ikutan naik.</p>
+                </div>
+              </div>
+            </div>
             
             <div className="space-y-3 md:space-y-4">
               <div className="flex items-start gap-2.5 md:gap-3">
