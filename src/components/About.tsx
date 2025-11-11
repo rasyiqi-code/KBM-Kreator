@@ -8,13 +8,13 @@ const About = () => {
               Partner Kreatif Perusahaan Penerbit di Indonesia
             </h2>
             <p className="text-base md:text-lg text-muted-foreground mb-4 md:mb-6 leading-relaxed">
-              KBM Kreator Yogyakarta berdiri sejak 2017 dan mulai fokus pengembangan serta ekspansi bisnis sejak 2023. Lokasi kantor yang berdiri di Depok, Sleman - Yogyakarta sangat didukung dengan mudahnya mencari tenaga kerja yang profesional, peralatan dan mesin yang mumpuni, dan bahan berbagai baku yang cukup mudah didapat dengan harga teman dekat.
+              KBM Kreator Yogyakarta berdiri sejak 2017 dan mulai fokus pengembangan serta ekspansi bisnis sejak 2023. Lokasi kantor yang berdiri di Depok, Sleman - Yogyakarta sangat didukung dengan mudahnya mencari tenaga kerja yang profesional, peralatan dan mesin yang mumpuni, dan berbagai bahan baku yang cukup mudah didapat dengan harga teman dekat.
             </p>
             <p className="text-base md:text-lg text-muted-foreground mb-4 md:mb-6 leading-relaxed">
               <strong>VISI:</strong> "Berusaha Membantu Meringankan Pekerjaan Setiap Penerbit Buku di Indonesia Secara Cepat, Berintegritas - Berkomitmen Tinggi Dan Saling Menguntungkan."
             </p>
             <p className="text-base md:text-lg text-muted-foreground mb-4 md:mb-6 leading-relaxed">
-              <strong>MISI:</strong> Ada kuantitas - ada fasilitas, Ada kuantitas - ada request dan kualitas sultan – harga persahabatan.
+              <strong>MISI:</strong> 1). Ada kuantitas - ada fasilitas; 2). Ada kuantitas - ada request dan 3). kualitas sultan – harga persahabatan.
             </p>
             
             <div className="mb-6 md:mb-8">
@@ -29,7 +29,7 @@ const About = () => {
                     </div>
                     <div className="flex-1">
                       <h4 className="text-base md:text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
-                        Working Behind The Scenes
+                        Bekerja dibalik Layar
                       </h4>
                       <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
                         Siapa pun mitra partner kami maka privasinya akan kami jaga. Label, logo, dan identitas KBM Kreator Yogyakarta tidak akan pernah kami munculkan pada lembar naskah atau jobs yang diberikan oleh mitra partner.
@@ -64,7 +64,7 @@ const About = () => {
                         Menjaga Privasi Mitra Partner
                       </h4>
                       <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-                        Kami tidak pernah membocorkan penerbit yang bekerjasama kecuali atas ijin mereka. Ratusan penerbit, puluhan ribu cetakan buku, dan ribuan layout telah dipercayakan kepada kami.
+                        Kami tidak pernah membocorkan data dan nama penerbit yang bekerjasama kecuali atas ijin mereka. Ratusan penerbit, puluhan ribu cetakan buku, dan ribuan layout telah dipercayakan kepada kami.
                       </p>
                     </div>
                   </div>
@@ -117,9 +117,8 @@ const About = () => {
               <div className="flex items-start gap-2.5 md:gap-3">
                 <Award className="w-5 h-5 md:w-6 md:h-6 text-primary flex-shrink-0 mt-0.5 md:mt-1" />
                 <div>
-                  <h4 className="text-sm md:text-base font-semibold text-foreground mb-0.5 md:mb-1">Komitmen</h4>
-                  <p className="text-sm md:text-base text-muted-foreground">Working Behind The Scenes</p>
-                  <p className="text-xs md:text-sm text-muted-foreground">Menjaga privasi & kepercayaan mitra partner</p>
+                  <h4 className="text-sm md:text-base font-semibold text-foreground mb-0.5 md:mb-1">Keanggotaan</h4>
+                  <p className="text-sm md:text-base text-muted-foreground">Bergabung di PCJ (Paguyuban Cetak Jogjakarta)</p>
                 </div>
               </div>
             </div>
@@ -129,12 +128,16 @@ const About = () => {
             <div className="rounded-2xl bg-gradient-to-br from-primary/10 via-secondary/10 to-primary/5 p-6 md:p-8 flex items-center justify-center min-h-[300px] md:min-h-[400px]">
               <div className="text-center space-y-6 md:space-y-8">
                 <div className="space-y-1 md:space-y-2">
-                  <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary">500+</div>
-                  <p className="text-sm md:text-base lg:text-lg text-muted-foreground">Proyek Kreatif Selesai</p>
+                  <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary">1,000+</div>
+                  <p className="text-sm md:text-base lg:text-lg text-muted-foreground">Cover Dibuat</p>
                 </div>
                 <div className="space-y-1 md:space-y-2">
-                  <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-secondary">1,000+</div>
-                  <p className="text-sm md:text-base lg:text-lg text-muted-foreground">Desain Cover Dibuat</p>
+                  <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-secondary">2,000+</div>
+                  <p className="text-sm md:text-base lg:text-lg text-muted-foreground">Layout Selesai</p>
+                </div>
+                <div className="space-y-1 md:space-y-2">
+                  <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-accent">100+</div>
+                  <p className="text-sm md:text-base lg:text-lg text-muted-foreground">Mitra Penerbit</p>
                 </div>
                 <div className="space-y-1 md:space-y-2">
                   <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary-dark">7+</div>
