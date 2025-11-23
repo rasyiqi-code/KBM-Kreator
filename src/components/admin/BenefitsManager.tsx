@@ -5,9 +5,10 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { Plus, Trash2, Edit } from "lucide-react";
+import { Plus, Trash2, Edit, ArrowUp, ArrowDown } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Switch } from "@/components/ui/switch";
 
 interface Benefit {
   id: string;
@@ -113,6 +114,59 @@ const BenefitsManager = () => {
     }
   };
 
+  const handleToggleActive = async (id: string, currentActive: boolean) => {
+    try {
+      const { error } = await supabase
+        .from("benefits")
+        .update({ active: !currentActive })
+        .eq("id", id);
+
+      if (error) throw error;
+      toast({
+        title: "Berhasil",
+        description: `Benefit ${!currentActive ? "diaktifkan" : "dinonaktifkan"}`,
+      });
+      fetchBenefits();
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Gagal mengubah status benefit",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const handleReorder = async (id: string, direction: "up" | "down") => {
+    const currentIndex = benefits.findIndex((b) => b.id === id);
+    if (currentIndex === -1) return;
+
+    const newIndex = direction === "up" ? currentIndex - 1 : currentIndex + 1;
+    if (newIndex < 0 || newIndex >= benefits.length) return;
+
+    const currentOrder = benefits[currentIndex].display_order;
+    const targetOrder = benefits[newIndex].display_order;
+
+    try {
+      await supabase
+        .from("benefits")
+        .update({ display_order: targetOrder })
+        .eq("id", id);
+
+      await supabase
+        .from("benefits")
+        .update({ display_order: currentOrder })
+        .eq("id", benefits[newIndex].id);
+
+      fetchBenefits();
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Gagal mengubah urutan",
+        variant: "destructive",
+      });
+    }
+  };
+
   return (
     <div className="space-y-4">
       <div className="flex justify-between items-center">
@@ -170,8 +224,8 @@ const BenefitsManager = () => {
       </div>
 
       <div className="grid md:grid-cols-2 gap-4">
-        {benefits.map((benefit) => (
-          <Card key={benefit.id}>
+        {benefits.map((benefit, index) => (
+          <Card key={benefit.id} className={benefit.active ? "" : "opacity-60"}>
             <CardContent className="p-4">
               <div className="flex justify-between items-start">
                 <div className="flex-1">
@@ -179,11 +233,45 @@ const BenefitsManager = () => {
                     <span className="text-xs bg-secondary/10 text-secondary px-2 py-1 rounded">
                       {benefit.icon}
                     </span>
+                    {!benefit.active && (
+                      <span className="text-xs bg-muted text-muted-foreground px-2 py-1 rounded">
+                        Nonaktif
+                      </span>
+                    )}
                   </div>
                   <h3 className="font-semibold text-foreground mb-1">{benefit.title}</h3>
                   <p className="text-sm text-muted-foreground">{benefit.description}</p>
+                  <div className="flex items-center gap-2 mt-3">
+                    <Switch
+                      checked={benefit.active}
+                      onCheckedChange={() => handleToggleActive(benefit.id, benefit.active)}
+                    />
+                    <Label className="text-xs text-muted-foreground">
+                      {benefit.active ? "Aktif" : "Nonaktif"}
+                    </Label>
+                  </div>
                 </div>
-                <div className="flex gap-2">
+                <div className="flex flex-col gap-2">
+                  <div className="flex gap-1">
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => handleReorder(benefit.id, "up")}
+                      disabled={index === 0}
+                      title="Pindah ke atas"
+                    >
+                      <ArrowUp className="w-3 h-3" />
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => handleReorder(benefit.id, "down")}
+                      disabled={index === benefits.length - 1}
+                      title="Pindah ke bawah"
+                    >
+                      <ArrowDown className="w-3 h-3" />
+                    </Button>
+                  </div>
                   <Button size="sm" variant="outline" onClick={() => handleEdit(benefit)}>
                     <Edit className="w-4 h-4" />
                   </Button>

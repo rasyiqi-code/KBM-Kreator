@@ -6,8 +6,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { Upload, Trash2, ExternalLink } from "lucide-react";
+import { Upload, Trash2, ExternalLink, Edit, ArrowUp, ArrowDown } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { z } from "zod";
 
 const portfolioSchema = z.object({
@@ -55,11 +56,13 @@ const PortfolioManager = () => {
   const { toast } = useToast();
   const [uploading, setUploading] = useState(false);
   const [items, setItems] = useState<PortfolioItem[]>([]);
+  const [editingItem, setEditingItem] = useState<PortfolioItem | null>(null);
+  const [editDialogOpen, setEditDialogOpen] = useState(false);
   
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    category: "cover",
+    category: "cover" as "cover" | "layout" | "aesthetic" | "video",
     youtube_url: "",
     instagram_url: "",
     featured: false,
@@ -109,7 +112,8 @@ const PortfolioManager = () => {
       return;
     }
 
-    if (!imageFile) {
+    // Only require image for new items
+    if (!editingItem && !imageFile) {
       toast({
         title: "Error",
         description: "Pilih gambar terlebih dahulu",
@@ -118,54 +122,85 @@ const PortfolioManager = () => {
       return;
     }
 
-    const maxSize = 5 * 1024 * 1024;
-    if (imageFile.size > maxSize) {
-      toast({
-        title: "Error",
-        description: "Ukuran file maksimal 5MB",
-        variant: "destructive",
-      });
-      return;
-    }
+    if (imageFile) {
+      const maxSize = 5 * 1024 * 1024;
+      if (imageFile.size > maxSize) {
+        toast({
+          title: "Error",
+          description: "Ukuran file maksimal 5MB",
+          variant: "destructive",
+        });
+        return;
+      }
 
-    const allowedTypes = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
-    if (!allowedTypes.includes(imageFile.type)) {
-      toast({
-        title: "Error",
-        description: "Format file harus JPG, PNG, atau WebP",
-        variant: "destructive",
-      });
-      return;
+      const allowedTypes = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
+      if (!allowedTypes.includes(imageFile.type)) {
+        toast({
+          title: "Error",
+          description: "Format file harus JPG, PNG, atau WebP",
+          variant: "destructive",
+        });
+        return;
+      }
     }
 
     setUploading(true);
 
     try {
-      const fileExt = imageFile.name.split(".").pop();
-      const fileName = `${Date.now()}.${fileExt}`;
-      const { error: uploadError } = await supabase.storage
-        .from("portfolio")
-        .upload(fileName, imageFile);
+      let imageUrl = editingItem?.image_url;
 
-      if (uploadError) throw uploadError;
+      // Upload new image if provided
+      if (imageFile) {
+        const fileExt = imageFile.name.split(".").pop();
+        const fileName = `${Date.now()}.${fileExt}`;
+        const { error: uploadError } = await supabase.storage
+          .from("portfolio")
+          .upload(fileName, imageFile);
 
-      const { data: { publicUrl } } = supabase.storage
-        .from("portfolio")
-        .getPublicUrl(fileName);
+        if (uploadError) throw uploadError;
 
-      const { error: insertError } = await supabase
-        .from("portfolio_items")
-        .insert({
-          ...formData,
-          image_url: publicUrl,
+        const { data: { publicUrl } } = supabase.storage
+          .from("portfolio")
+          .getPublicUrl(fileName);
+
+        imageUrl = publicUrl;
+      }
+
+      const updateData: any = {
+        ...formData,
+        description: formData.description || null,
+        youtube_url: formData.youtube_url || null,
+        instagram_url: formData.instagram_url || null,
+      };
+
+      if (imageUrl) {
+        updateData.image_url = imageUrl;
+      }
+
+      if (editingItem) {
+        const { error: updateError } = await supabase
+          .from("portfolio_items")
+          .update(updateData)
+          .eq("id", editingItem.id);
+
+        if (updateError) throw updateError;
+
+        toast({
+          title: "Berhasil",
+          description: "Portfolio berhasil diperbarui",
         });
+      } else {
+        const { error: insertError } = await supabase
+          .from("portfolio_items")
+          .insert([updateData]);
 
-      if (insertError) throw insertError;
+        if (insertError) throw insertError;
 
-      toast({
-        title: "Berhasil",
-        description: "Portfolio berhasil ditambahkan",
-      });
+        toast({
+          title: "Berhasil",
+          description: "Portfolio berhasil ditambahkan",
+        });
+      }
 
       setFormData({
         title: "",
@@ -176,15 +211,76 @@ const PortfolioManager = () => {
         featured: false,
       });
       setImageFile(null);
+      setEditingItem(null);
+      setEditDialogOpen(false);
       fetchItems();
     } catch (error) {
       toast({
         title: "Error",
-        description: "Gagal menambahkan portfolio",
+        description: editingItem ? "Gagal memperbarui portfolio" : "Gagal menambahkan portfolio",
         variant: "destructive",
       });
     } finally {
       setUploading(false);
+    }
+  };
+
+  const handleEdit = (item: PortfolioItem) => {
+    setEditingItem(item);
+    setFormData({
+      title: item.title,
+      description: item.description || "",
+      category: item.category as "cover" | "layout" | "aesthetic" | "video",
+      youtube_url: item.youtube_url || "",
+      instagram_url: item.instagram_url || "",
+      featured: item.featured,
+    });
+    setImageFile(null);
+    setEditDialogOpen(true);
+  };
+
+  const handleCancelEdit = () => {
+    setEditingItem(null);
+    setFormData({
+      title: "",
+      description: "",
+      category: "cover",
+      youtube_url: "",
+      instagram_url: "",
+      featured: false,
+    });
+    setImageFile(null);
+    setEditDialogOpen(false);
+  };
+
+  const handleReorder = async (id: string, direction: "up" | "down") => {
+    const currentIndex = items.findIndex((item) => item.id === id);
+    if (currentIndex === -1) return;
+
+    const newIndex = direction === "up" ? currentIndex - 1 : currentIndex + 1;
+    if (newIndex < 0 || newIndex >= items.length) return;
+
+    const currentOrder = items[currentIndex].display_order;
+    const targetOrder = items[newIndex].display_order;
+
+    try {
+      await supabase
+        .from("portfolio_items")
+        .update({ display_order: targetOrder })
+        .eq("id", id);
+
+      await supabase
+        .from("portfolio_items")
+        .update({ display_order: currentOrder })
+        .eq("id", items[newIndex].id);
+
+      fetchItems();
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Gagal mengubah urutan",
+        variant: "destructive",
+      });
     }
   };
 
@@ -217,108 +313,122 @@ const PortfolioManager = () => {
     }
   };
 
+  const renderForm = () => (
+    <form onSubmit={handleSubmit} className="space-y-4">
+      <div>
+        <Label htmlFor="title">Judul *</Label>
+        <Input
+          id="title"
+          value={formData.title}
+          onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+          required
+        />
+      </div>
+
+      <div>
+        <Label htmlFor="description">Deskripsi</Label>
+        <Textarea
+          id="description"
+          value={formData.description}
+          onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+          rows={3}
+        />
+      </div>
+
+      <div>
+        <Label htmlFor="category">Kategori *</Label>
+        <Select
+          value={formData.category}
+          onValueChange={(value) => setFormData({ ...formData, category: value as any })}
+        >
+          <SelectTrigger>
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="cover">Cover Buku</SelectItem>
+            <SelectItem value="layout">Layout Buku</SelectItem>
+            <SelectItem value="aesthetic">Fotografi Estetik</SelectItem>
+            <SelectItem value="video">Video</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+
+      <div>
+        <Label htmlFor="image">Gambar {editingItem ? "(kosongkan jika tidak ingin mengubah)" : "*"}</Label>
+        <Input
+          id="image"
+          type="file"
+          accept="image/*"
+          onChange={handleImageChange}
+          required={!editingItem}
+        />
+        {editingItem && imageFile && (
+          <p className="text-xs text-muted-foreground mt-1">Gambar baru dipilih</p>
+        )}
+      </div>
+
+      <div>
+        <Label htmlFor="youtube">URL YouTube (opsional)</Label>
+        <Input
+          id="youtube"
+          type="url"
+          placeholder="https://youtube.com/..."
+          value={formData.youtube_url}
+          onChange={(e) => setFormData({ ...formData, youtube_url: e.target.value })}
+        />
+      </div>
+
+      <div>
+        <Label htmlFor="instagram">URL Instagram (opsional)</Label>
+        <Input
+          id="instagram"
+          type="url"
+          placeholder="https://instagram.com/..."
+          value={formData.instagram_url}
+          onChange={(e) => setFormData({ ...formData, instagram_url: e.target.value })}
+        />
+      </div>
+
+      <div className="flex items-center space-x-2">
+        <input
+          type="checkbox"
+          id="featured"
+          checked={formData.featured}
+          onChange={(e) => setFormData({ ...formData, featured: e.target.checked })}
+          className="w-4 h-4"
+        />
+        <Label htmlFor="featured">Tampilkan sebagai Featured</Label>
+      </div>
+
+      <div className="flex gap-2">
+        {editingItem && (
+          <Button type="button" variant="outline" onClick={handleCancelEdit} className="flex-1">
+            Batal
+          </Button>
+        )}
+        <Button type="submit" disabled={uploading} className={editingItem ? "flex-1" : "w-full"}>
+          <Upload className="w-4 h-4 mr-2" />
+          {uploading ? "Menyimpan..." : editingItem ? "Update Portfolio" : "Upload Portfolio"}
+        </Button>
+      </div>
+    </form>
+  );
+
   return (
     <div className="grid lg:grid-cols-2 gap-8">
       <Card>
         <CardHeader>
-          <CardTitle>Tambah Portfolio Baru</CardTitle>
+          <CardTitle>{editingItem ? "Edit Portfolio" : "Tambah Portfolio Baru"}</CardTitle>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <Label htmlFor="title">Judul *</Label>
-              <Input
-                id="title"
-                value={formData.title}
-                onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                required
-              />
-            </div>
-
-            <div>
-              <Label htmlFor="description">Deskripsi</Label>
-              <Textarea
-                id="description"
-                value={formData.description}
-                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                rows={3}
-              />
-            </div>
-
-            <div>
-              <Label htmlFor="category">Kategori *</Label>
-              <Select
-                value={formData.category}
-                onValueChange={(value) => setFormData({ ...formData, category: value })}
-              >
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="cover">Cover Buku</SelectItem>
-                  <SelectItem value="layout">Layout Buku</SelectItem>
-                  <SelectItem value="aesthetic">Fotografi Estetik</SelectItem>
-                  <SelectItem value="video">Video</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            <div>
-              <Label htmlFor="image">Gambar *</Label>
-              <Input
-                id="image"
-                type="file"
-                accept="image/*"
-                onChange={handleImageChange}
-                required
-              />
-            </div>
-
-            <div>
-              <Label htmlFor="youtube">URL YouTube (opsional)</Label>
-              <Input
-                id="youtube"
-                type="url"
-                placeholder="https://youtube.com/..."
-                value={formData.youtube_url}
-                onChange={(e) => setFormData({ ...formData, youtube_url: e.target.value })}
-              />
-            </div>
-
-            <div>
-              <Label htmlFor="instagram">URL Instagram (opsional)</Label>
-              <Input
-                id="instagram"
-                type="url"
-                placeholder="https://instagram.com/..."
-                value={formData.instagram_url}
-                onChange={(e) => setFormData({ ...formData, instagram_url: e.target.value })}
-              />
-            </div>
-
-            <div className="flex items-center space-x-2">
-              <input
-                type="checkbox"
-                id="featured"
-                checked={formData.featured}
-                onChange={(e) => setFormData({ ...formData, featured: e.target.checked })}
-                className="w-4 h-4"
-              />
-              <Label htmlFor="featured">Tampilkan sebagai Featured</Label>
-            </div>
-
-            <Button type="submit" disabled={uploading} className="w-full">
-              <Upload className="w-4 h-4 mr-2" />
-              {uploading ? "Mengupload..." : "Upload Portfolio"}
-            </Button>
-          </form>
+          {renderForm()}
         </CardContent>
       </Card>
 
       <div>
         <h2 className="text-xl font-bold text-foreground mb-4">Portfolio Saat Ini ({items.length})</h2>
         <div className="space-y-4">
-          {items.map((item) => (
+          {items.map((item, index) => (
             <Card key={item.id}>
               <CardContent className="p-4">
                 <div className="flex gap-4">
@@ -330,6 +440,11 @@ const PortfolioManager = () => {
                   <div className="flex-1">
                     <h3 className="font-semibold text-foreground">{item.title}</h3>
                     <p className="text-sm text-muted-foreground">{item.category}</p>
+                    {item.featured && (
+                      <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded mt-1 inline-block">
+                        Featured
+                      </span>
+                    )}
                     {item.description && (
                       <p className="text-sm text-muted-foreground mt-1">{item.description}</p>
                     )}
@@ -358,13 +473,42 @@ const PortfolioManager = () => {
                       )}
                     </div>
                   </div>
-                  <Button
-                    variant="destructive"
-                    size="sm"
-                    onClick={() => handleDelete(item.id, item.image_url)}
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </Button>
+                  <div className="flex flex-col gap-2">
+                    <div className="flex gap-1">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => handleReorder(item.id, "up")}
+                        disabled={index === 0}
+                        title="Pindah ke atas"
+                      >
+                        <ArrowUp className="w-3 h-3" />
+                      </Button>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => handleReorder(item.id, "down")}
+                        disabled={index === items.length - 1}
+                        title="Pindah ke bawah"
+                      >
+                        <ArrowDown className="w-3 h-3" />
+                      </Button>
+                    </div>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => handleEdit(item)}
+                    >
+                      <Edit className="w-4 h-4" />
+                    </Button>
+                    <Button
+                      variant="destructive"
+                      size="sm"
+                      onClick={() => handleDelete(item.id, item.image_url)}
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </Button>
+                  </div>
                 </div>
               </CardContent>
             </Card>

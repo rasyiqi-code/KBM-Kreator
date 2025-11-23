@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -28,11 +28,7 @@ const StatsManager = () => {
     color: "primary",
   });
 
-  useEffect(() => {
-    fetchStats();
-  }, []);
-
-  const fetchStats = async () => {
+  const fetchStats = useCallback(async () => {
     const { data, error } = await supabase
       .from("company_stats")
       .select("*")
@@ -47,7 +43,11 @@ const StatsManager = () => {
     } else {
       setStats(data || []);
     }
-  };
+  }, [toast]);
+
+  useEffect(() => {
+    fetchStats();
+  }, [fetchStats]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -107,6 +107,52 @@ const StatsManager = () => {
       toast({
         title: "Error",
         description: "Gagal menghapus statistik",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const getColorClass = (color: string) => {
+    switch (color) {
+      case "primary":
+        return "text-primary";
+      case "secondary":
+        return "text-secondary";
+      case "accent":
+        return "text-accent-foreground";
+      case "primary-dark":
+        return "text-primary";
+      default:
+        return "text-foreground";
+    }
+  };
+
+  const handleReorder = async (id: string, direction: "up" | "down") => {
+    const currentIndex = stats.findIndex((s) => s.id === id);
+    if (currentIndex === -1) return;
+
+    const newIndex = direction === "up" ? currentIndex - 1 : currentIndex + 1;
+    if (newIndex < 0 || newIndex >= stats.length) return;
+
+    const currentOrder = stats[currentIndex].display_order;
+    const targetOrder = stats[newIndex].display_order;
+
+    try {
+      await supabase
+        .from("company_stats")
+        .update({ display_order: targetOrder })
+        .eq("id", id);
+
+      await supabase
+        .from("company_stats")
+        .update({ display_order: currentOrder })
+        .eq("id", stats[newIndex].id);
+
+      fetchStats();
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Gagal mengubah urutan",
         variant: "destructive",
       });
     }
@@ -177,14 +223,32 @@ const StatsManager = () => {
       </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-        {stats.map((stat) => (
+        {stats.map((stat, index) => (
           <Card key={stat.id}>
             <CardContent className="p-4 text-center">
-              <div className={`text-3xl font-bold text-${stat.color} mb-1`}>
+              <div className={`text-3xl font-bold ${getColorClass(stat.color)} mb-1`}>
                 {stat.value}
               </div>
               <p className="text-sm text-muted-foreground mb-3">{stat.label}</p>
               <div className="flex justify-center gap-2">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={() => handleReorder(stat.id, "up")}
+                  disabled={index === 0}
+                  title="Pindah ke atas"
+                >
+                  ↑
+                </Button>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={() => handleReorder(stat.id, "down")}
+                  disabled={index === stats.length - 1}
+                  title="Pindah ke bawah"
+                >
+                  ↓
+                </Button>
                 <Button size="sm" variant="outline" onClick={() => handleEdit(stat)}>
                   <Edit className="w-3 h-3" />
                 </Button>
