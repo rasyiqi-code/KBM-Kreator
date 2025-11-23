@@ -1,20 +1,111 @@
-import { Building2, MapPin, Calendar, Award, Shield, ShieldCheck, Lock, Sparkles } from "lucide-react";
+import { useEffect, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { Building2, MapPin, Calendar, Award } from "lucide-react";
+import * as LucideIcons from "lucide-react";
+
+interface AboutContent {
+  heading: string;
+  intro: string;
+  visi: string;
+  misi: string;
+  founding_year: string;
+  location: string;
+  owner: string;
+  owner_title: string;
+  membership: string;
+}
+
+interface Principle {
+  id: string;
+  icon: string;
+  title: string;
+  description: string;
+}
+
+interface CompanyStat {
+  id: string;
+  label: string;
+  value: string;
+  color: string;
+}
+
 const About = () => {
-  return <section className="py-12 md:py-20 px-4">
+  const [content, setContent] = useState<AboutContent>({
+    heading: "Partner Kreatif Perusahaan Penerbit di Indonesia",
+    intro: "",
+    visi: "",
+    misi: "",
+    founding_year: "2017",
+    location: "",
+    owner: "",
+    owner_title: "",
+    membership: "",
+  });
+  const [principles, setPrinciples] = useState<Principle[]>([]);
+  const [stats, setStats] = useState<CompanyStat[]>([]);
+
+  useEffect(() => {
+    fetchContent();
+    fetchPrinciples();
+    fetchStats();
+  }, []);
+
+  const fetchContent = async () => {
+    const { data, error } = await supabase
+      .from("site_content")
+      .select("content")
+      .eq("section", "about")
+      .single();
+
+    if (!error && data?.content) {
+      setContent(data.content as unknown as AboutContent);
+    }
+  };
+
+  const fetchPrinciples = async () => {
+    const { data, error } = await supabase
+      .from("principles")
+      .select("*")
+      .eq("active", true)
+      .order("display_order");
+
+    if (!error && data) {
+      setPrinciples(data);
+    }
+  };
+
+  const fetchStats = async () => {
+    const { data, error } = await supabase
+      .from("company_stats")
+      .select("*")
+      .order("display_order");
+
+    if (!error && data) {
+      setStats(data);
+    }
+  };
+
+  const getIcon = (iconName: string) => {
+    const Icon = (LucideIcons as any)[iconName];
+    return Icon || LucideIcons.Star;
+  };
+
+  return (
+    <section className="py-12 md:py-20 px-4">
       <div className="container mx-auto px-0">
         <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
           <div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 text-foreground">
-              Partner Kreatif Perusahaan Penerbit di Indonesia
+              {content.heading}
             </h2>
             <p className="text-base md:text-lg text-muted-foreground mb-4 md:mb-6 leading-relaxed">
-              KBM Kreator Yogyakarta berdiri sejak 2017 dan mulai fokus pengembangan serta ekspansi bisnis sejak 2023. Lokasi kantor yang berdiri di Depok, Sleman - Yogyakarta sangat didukung dengan mudahnya mencari tenaga kerja yang profesional, peralatan dan mesin yang mumpuni, dan berbagai bahan baku yang cukup mudah didapat dengan harga teman dekat.
+              {content.intro}
             </p>
             <p className="text-base md:text-lg text-muted-foreground mb-4 md:mb-6 leading-relaxed">
-              <strong>VISI:</strong> "Berusaha Membantu Meringankan Pekerjaan Setiap Penerbit Buku di Indonesia Secara Cepat, Berintegritas - Berkomitmen Tinggi Dan Saling Menguntungkan."
+              <strong>VISI:</strong> "{content.visi}"
             </p>
             <p className="text-base md:text-lg text-muted-foreground mb-4 md:mb-6 leading-relaxed">
-              <strong>MISI:</strong> 1). Ada kuantitas - ada fasilitas; 2). Ada kuantitas - ada request dan 3). kualitas sultan – harga persahabatan.
+              <strong>MISI:</strong> {content.misi}
             </p>
             
             <div className="mb-6 md:mb-8">
@@ -22,69 +113,30 @@ const About = () => {
                 Prinsip Kerja Kami
               </h3>
               <div className="grid gap-4 md:gap-6">
-                <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary/5 via-background to-secondary/5 border border-border/50 p-5 md:p-6 transition-all duration-300 hover:shadow-lg hover:border-primary/30">
-                  <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                      <Shield className="w-6 h-6 md:w-7 md:h-7 text-primary" />
+                {principles.map((principle, index) => {
+                  const Icon = getIcon(principle.icon);
+                  const bgColor = index % 2 === 0 ? "from-primary/5 via-background to-secondary/5" : "from-secondary/5 via-background to-primary/5";
+                  const iconBg = index % 2 === 0 ? "bg-primary/10 group-hover:bg-primary/20" : "bg-secondary/10 group-hover:bg-secondary/20";
+                  const iconColor = index % 2 === 0 ? "text-primary" : "text-secondary";
+                  
+                  return (
+                    <div key={principle.id} className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br ${bgColor} border border-border/50 p-5 md:p-6 transition-all duration-300 hover:shadow-lg hover:border-primary/30`}>
+                      <div className="flex items-start gap-4">
+                        <div className={`flex-shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-xl ${iconBg} flex items-center justify-center transition-colors`}>
+                          <Icon className={`w-6 h-6 md:w-7 md:h-7 ${iconColor}`} />
+                        </div>
+                        <div className="flex-1">
+                          <h4 className="text-base md:text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                            {principle.title}
+                          </h4>
+                          <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+                            {principle.description}
+                          </p>
+                        </div>
+                      </div>
                     </div>
-                    <div className="flex-1">
-                      <h4 className="text-base md:text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
-                        Bekerja dibalik Layar
-                      </h4>
-                      <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-                        Siapa pun mitra partner kami maka privasinya akan kami jaga. Label, logo, dan identitas KBM Kreator Yogyakarta tidak akan pernah kami munculkan pada lembar naskah atau jobs yang diberikan oleh mitra partner.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-secondary/5 via-background to-primary/5 border border-border/50 p-5 md:p-6 transition-all duration-300 hover:shadow-lg hover:border-primary/30">
-                  <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-xl bg-secondary/10 flex items-center justify-center group-hover:bg-secondary/20 transition-colors">
-                      <ShieldCheck className="w-6 h-6 md:w-7 md:h-7 text-secondary" />
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="text-base md:text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
-                        Anti Sabotase & Pencurian Pelanggan
-                      </h4>
-                      <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-                        Kepercayaan mitra partner adalah yang terpenting bagi kami. Kepercayaan melahirkan kerjasama dengan komitmen tinggi, dan komitmen tinggi membuat kerjasama berlangsung sangat lama.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary/5 via-background to-secondary/5 border border-border/50 p-5 md:p-6 transition-all duration-300 hover:shadow-lg hover:border-primary/30">
-                  <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                      <Lock className="w-6 h-6 md:w-7 md:h-7 text-primary" />
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="text-base md:text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
-                        Menjaga Privasi Mitra Partner
-                      </h4>
-                      <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-                        Kami tidak pernah membocorkan data dan nama penerbit yang bekerjasama kecuali atas ijin mereka. Ratusan penerbit, puluhan ribu cetakan buku, dan ribuan layout telah dipercayakan kepada kami.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-secondary/5 via-background to-primary/5 border border-border/50 p-5 md:p-6 transition-all duration-300 hover:shadow-lg hover:border-primary/30">
-                  <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-xl bg-secondary/10 flex items-center justify-center group-hover:bg-secondary/20 transition-colors">
-                      <Sparkles className="w-6 h-6 md:w-7 md:h-7 text-secondary" />
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="text-base md:text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
-                        Memudahkan Dalam Pelayanan
-                      </h4>
-                      <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-                        Ketika branding mitra partner kami naik karena pelayanan yang memudahkan, omset kami pun ikut naik. Saling menguntungkan adalah kunci kesuksesan bersama.
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                  );
+                })}
               </div>
             </div>
             
@@ -93,7 +145,7 @@ const About = () => {
                 <Calendar className="w-5 h-5 md:w-6 md:h-6 text-primary flex-shrink-0 mt-0.5 md:mt-1" />
                 <div>
                   <h4 className="text-sm md:text-base font-semibold text-foreground mb-0.5 md:mb-1">Didirikan</h4>
-                  <p className="text-sm md:text-base text-muted-foreground">2017 | Fokus Ekspansi sejak 2023</p>
+                  <p className="text-sm md:text-base text-muted-foreground">{content.founding_year}</p>
                 </div>
               </div>
               
@@ -101,7 +153,7 @@ const About = () => {
                 <MapPin className="w-5 h-5 md:w-6 md:h-6 text-primary flex-shrink-0 mt-0.5 md:mt-1" />
                 <div>
                   <h4 className="text-sm md:text-base font-semibold text-foreground mb-0.5 md:mb-1">Lokasi</h4>
-                  <p className="text-sm md:text-base text-muted-foreground">Paingan, Maguwoharjo, Depok, Sleman, DI Yogyakarta</p>
+                  <p className="text-sm md:text-base text-muted-foreground">{content.location}</p>
                 </div>
               </div>
               
@@ -109,8 +161,8 @@ const About = () => {
                 <Building2 className="w-5 h-5 md:w-6 md:h-6 text-primary flex-shrink-0 mt-0.5 md:mt-1" />
                 <div>
                   <h4 className="text-sm md:text-base font-semibold text-foreground mb-0.5 md:mb-1">Owner & Pendiri</h4>
-                  <p className="text-sm md:text-base text-muted-foreground">Mohammad Imam Junaidi, S.E., M.H.</p>
-                  <p className="text-xs md:text-sm text-muted-foreground">Praktisi Advokasi Hukum, Kepenulisan & Motivasi Literasi</p>
+                  <p className="text-sm md:text-base text-muted-foreground">{content.owner}</p>
+                  <p className="text-xs md:text-sm text-muted-foreground">{content.owner_title}</p>
                 </div>
               </div>
               
@@ -118,7 +170,7 @@ const About = () => {
                 <Award className="w-5 h-5 md:w-6 md:h-6 text-primary flex-shrink-0 mt-0.5 md:mt-1" />
                 <div>
                   <h4 className="text-sm md:text-base font-semibold text-foreground mb-0.5 md:mb-1">Keanggotaan</h4>
-                  <p className="text-sm md:text-base text-muted-foreground">Bergabung di PCJ (Paguyuban Cetak Jogjakarta)</p>
+                  <p className="text-sm md:text-base text-muted-foreground">{content.membership}</p>
                 </div>
               </div>
             </div>
@@ -127,27 +179,21 @@ const About = () => {
           <div className="relative mt-8 lg:mt-0">
             <div className="rounded-2xl bg-gradient-to-br from-primary/10 via-secondary/10 to-primary/5 p-6 md:p-8 flex items-center justify-center min-h-[300px] md:min-h-[400px]">
               <div className="text-center space-y-6 md:space-y-8">
-                <div className="space-y-1 md:space-y-2">
-                  <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary">1,000+</div>
-                  <p className="text-sm md:text-base lg:text-lg text-muted-foreground">Cover Dibuat</p>
-                </div>
-                <div className="space-y-1 md:space-y-2">
-                  <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-secondary">2,000+</div>
-                  <p className="text-sm md:text-base lg:text-lg text-muted-foreground">Layout Selesai</p>
-                </div>
-                <div className="space-y-1 md:space-y-2">
-                  <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-accent">100+</div>
-                  <p className="text-sm md:text-base lg:text-lg text-muted-foreground">Mitra Penerbit</p>
-                </div>
-                <div className="space-y-1 md:space-y-2">
-                  <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary-dark">7+</div>
-                  <p className="text-sm md:text-base lg:text-lg text-muted-foreground">Tahun Pengalaman</p>
-                </div>
+                {stats.map((stat) => (
+                  <div key={stat.id} className="space-y-1 md:space-y-2">
+                    <div className={`text-4xl sm:text-5xl md:text-6xl font-bold text-${stat.color}`}>
+                      {stat.value}
+                    </div>
+                    <p className="text-sm md:text-base lg:text-lg text-muted-foreground">{stat.label}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default About;

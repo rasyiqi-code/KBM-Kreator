@@ -14,6 +14,69 @@ export type Database = {
   }
   public: {
     Tables: {
+      benefits: {
+        Row: {
+          active: boolean | null
+          created_at: string
+          description: string
+          display_order: number | null
+          icon: string
+          id: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean | null
+          created_at?: string
+          description: string
+          display_order?: number | null
+          icon: string
+          id?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean | null
+          created_at?: string
+          description?: string
+          display_order?: number | null
+          icon?: string
+          id?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      company_stats: {
+        Row: {
+          color: string | null
+          created_at: string
+          display_order: number | null
+          id: string
+          label: string
+          updated_at: string
+          value: string
+        }
+        Insert: {
+          color?: string | null
+          created_at?: string
+          display_order?: number | null
+          id?: string
+          label: string
+          updated_at?: string
+          value: string
+        }
+        Update: {
+          color?: string | null
+          created_at?: string
+          display_order?: number | null
+          id?: string
+          label?: string
+          updated_at?: string
+          value?: string
+        }
+        Relationships: []
+      }
       portfolio_items: {
         Row: {
           category: string
@@ -56,6 +119,96 @@ export type Database = {
           title?: string
           updated_at?: string
           youtube_url?: string | null
+        }
+        Relationships: []
+      }
+      principles: {
+        Row: {
+          active: boolean | null
+          created_at: string
+          description: string
+          display_order: number | null
+          icon: string
+          id: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean | null
+          created_at?: string
+          description: string
+          display_order?: number | null
+          icon: string
+          id?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean | null
+          created_at?: string
+          description?: string
+          display_order?: number | null
+          icon?: string
+          id?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      services: {
+        Row: {
+          active: boolean | null
+          created_at: string
+          description: string
+          display_order: number | null
+          icon: string
+          id: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean | null
+          created_at?: string
+          description: string
+          display_order?: number | null
+          icon: string
+          id?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean | null
+          created_at?: string
+          description?: string
+          display_order?: number | null
+          icon?: string
+          id?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      site_content: {
+        Row: {
+          content: Json
+          created_at: string
+          id: string
+          section: string
+          updated_at: string
+        }
+        Insert: {
+          content: Json
+          created_at?: string
+          id?: string
+          section: string
+          updated_at?: string
+        }
+        Update: {
+          content?: Json
+          created_at?: string
+          id?: string
+          section?: string
+          updated_at?: string
         }
         Relationships: []
       }
