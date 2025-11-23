@@ -9,6 +9,36 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useToast } from "@/hooks/use-toast";
 import { LogOut, Upload, Trash2, ExternalLink } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { z } from "zod";
+
+const portfolioSchema = z.object({
+  title: z.string()
+    .trim()
+    .min(1, "Judul tidak boleh kosong")
+    .max(200, "Judul maksimal 200 karakter"),
+  description: z.string()
+    .max(2000, "Deskripsi maksimal 2000 karakter")
+    .optional()
+    .transform(val => val === "" ? undefined : val),
+  category: z.enum(["cover", "layout", "aesthetic", "video"], {
+    errorMap: () => ({ message: "Kategori tidak valid" })
+  }),
+  youtube_url: z.string()
+    .optional()
+    .refine(
+      (val) => !val || val === "" || /^https?:\/\/(www\.)?(youtube\.com|youtu\.be)\/.+/.test(val),
+      { message: "URL YouTube tidak valid" }
+    )
+    .transform(val => val === "" ? undefined : val),
+  instagram_url: z.string()
+    .optional()
+    .refine(
+      (val) => !val || val === "" || /^https?:\/\/(www\.)?instagram\.com\/.+/.test(val),
+      { message: "URL Instagram tidak valid" }
+    )
+    .transform(val => val === "" ? undefined : val),
+  featured: z.boolean()
+});
 
 interface PortfolioItem {
   id: string;
@@ -83,10 +113,47 @@ const AdminDashboard = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate form data
+    try {
+      portfolioSchema.parse(formData);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        toast({
+          title: "Validasi Gagal",
+          description: error.errors[0].message,
+          variant: "destructive",
+        });
+      }
+      return;
+    }
+
     if (!imageFile) {
       toast({
         title: "Error",
         description: "Pilih gambar terlebih dahulu",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Validate file size (max 5MB)
+    const maxSize = 5 * 1024 * 1024;
+    if (imageFile.size > maxSize) {
+      toast({
+        title: "Error",
+        description: "Ukuran file maksimal 5MB",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Validate file type
+    const allowedTypes = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
+    if (!allowedTypes.includes(imageFile.type)) {
+      toast({
+        title: "Error",
+        description: "Format file harus JPG, PNG, atau WebP",
         variant: "destructive",
       });
       return;
