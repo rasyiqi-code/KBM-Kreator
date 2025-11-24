@@ -28,19 +28,34 @@ const Promo = () => {
         .eq("active", true)
         .order("display_order", { ascending: true });
 
-      if (error) throw error;
+      if (error) {
+        console.error("Error fetching promo:", error);
+        // Log error details for debugging
+        console.error("Error details:", {
+          message: error.message,
+          details: error.details,
+          hint: error.hint,
+        });
+        throw error;
+      }
+      
+      console.log("Promo items fetched:", data?.length || 0);
       setPromoItems((data || []) as PromoItem[]);
     } catch (error) {
       console.error("Error fetching promo:", error);
+      // Set empty array on error to prevent infinite loading
+      setPromoItems([]);
     } finally {
       setLoading(false);
     }
   };
 
+  // Show nothing while loading (to prevent flash)
   if (loading) {
     return null;
   }
 
+  // Show nothing if no promo items (this is expected behavior)
   if (promoItems.length === 0) {
     return null;
   }
