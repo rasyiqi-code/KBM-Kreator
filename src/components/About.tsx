@@ -1,7 +1,45 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { Building2, MapPin, Calendar, Award } from "lucide-react";
-import * as LucideIcons from "lucide-react";
+import { 
+  Building2, 
+  MapPin, 
+  Calendar, 
+  Award,
+  Star,
+  Shield,
+  Lock,
+  ShieldCheck,
+  CheckCircle,
+  Target,
+  Zap,
+  Heart,
+  Lightbulb,
+  Users,
+  Award as AwardIcon,
+  TrendingUp,
+  Globe,
+  BookOpen,
+  PenTool,
+  Palette,
+  Code,
+  Rocket,
+  Sparkles,
+  ThumbsUp,
+  Eye,
+  Handshake,
+  Briefcase,
+  Clock,
+  DollarSign,
+  FileText,
+  Image as ImageIcon,
+  Video,
+  Music,
+  Camera,
+  Mail,
+  Phone,
+  MessageCircle,
+  type LucideIcon
+} from "lucide-react";
 
 interface AboutContent {
   heading: string;
@@ -28,6 +66,43 @@ interface CompanyStat {
   value: string;
   color: string;
 }
+
+// Icon mapping for commonly used icons - only import what we need
+const iconMap: Record<string, LucideIcon> = {
+  Star,
+  Shield,
+  Lock,
+  ShieldCheck,
+  CheckCircle,
+  Target,
+  Zap,
+  Heart,
+  Lightbulb,
+  Users,
+  Award: AwardIcon,
+  TrendingUp,
+  Globe,
+  BookOpen,
+  PenTool,
+  Palette,
+  Code,
+  Rocket,
+  Sparkles,
+  ThumbsUp,
+  Eye,
+  Handshake,
+  Briefcase,
+  Clock,
+  DollarSign,
+  FileText,
+  Image: ImageIcon,
+  Video,
+  Music,
+  Camera,
+  Mail,
+  Phone,
+  MessageCircle,
+};
 
 const About = () => {
   const [content, setContent] = useState<AboutContent>({
@@ -85,9 +160,8 @@ const About = () => {
     }
   };
 
-  const getIcon = (iconName: string) => {
-    const Icon = (LucideIcons as any)[iconName];
-    return Icon || LucideIcons.Star;
+  const getIcon = (iconName: string): LucideIcon => {
+    return iconMap[iconName] || Star;
   };
 
   return (
