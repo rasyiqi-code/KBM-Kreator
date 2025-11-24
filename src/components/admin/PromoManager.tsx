@@ -440,15 +440,15 @@ const PromoManager = () => {
                   />
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-2">
-                      <h3 className="font-semibold text-lg text-foreground">{item.title}</h3>
+                      <h3 className="font-semibold text-lg text-card-foreground">{item.title}</h3>
                       {!item.active && (
-                        <span className="text-xs font-medium bg-muted text-muted-foreground px-2.5 py-1 rounded-md border border-border">
+                        <span className="text-xs font-medium bg-muted text-card-foreground px-2.5 py-1 rounded-md border border-border">
                           Nonaktif
                         </span>
                       )}
                     </div>
                     {item.description && (
-                      <p className="text-sm text-muted-foreground mb-2">{item.description}</p>
+                      <p className="text-sm text-card-foreground/80 mb-2">{item.description}</p>
                     )}
                     {item.link_url && (
                       <a
@@ -466,7 +466,7 @@ const PromoManager = () => {
                         checked={item.active}
                         onCheckedChange={() => handleToggleActive(item.id, item.active)}
                       />
-                      <Label className="text-xs text-muted-foreground">
+                      <Label className="text-xs text-card-foreground font-medium">
                         {item.active ? "Aktif" : "Nonaktif"}
                       </Label>
                     </div>
@@ -479,7 +479,7 @@ const PromoManager = () => {
                         onClick={() => handleReorder(item.id, "up")}
                         disabled={index === 0}
                         title="Pindah ke atas"
-                        className="hover:bg-primary/10 hover:border-primary/30"
+                        className="hover:bg-primary/10 hover:border-primary/30 hover:text-primary"
                       >
                         <ArrowUp className="w-3.5 h-3.5" />
                       </Button>
@@ -489,7 +489,7 @@ const PromoManager = () => {
                         onClick={() => handleReorder(item.id, "down")}
                         disabled={index === items.length - 1}
                         title="Pindah ke bawah"
-                        className="hover:bg-primary/10 hover:border-primary/30"
+                        className="hover:bg-primary/10 hover:border-primary/30 hover:text-primary"
                       >
                         <ArrowDown className="w-3.5 h-3.5" />
                       </Button>
@@ -498,7 +498,7 @@ const PromoManager = () => {
                       size="sm"
                       variant="outline"
                       onClick={() => handleEdit(item)}
-                      className="hover:bg-primary/10 hover:border-primary/30"
+                      className="hover:bg-primary/10 hover:border-primary/30 hover:text-primary"
                     >
                       <Edit className="w-4 h-4" />
                     </Button>

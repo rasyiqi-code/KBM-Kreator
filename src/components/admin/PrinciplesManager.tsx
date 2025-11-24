@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { Plus, Trash2, Edit, ArrowUp, ArrowDown } from "lucide-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Switch } from "@/components/ui/switch";
 
 interface Principle {
@@ -30,11 +30,7 @@ const PrinciplesManager = () => {
     description: "",
   });
 
-  useEffect(() => {
-    fetchPrinciples();
-  }, []);
-
-  const fetchPrinciples = async () => {
+  const fetchPrinciples = useCallback(async () => {
     const { data, error } = await supabase
       .from("principles")
       .select("*")
@@ -49,7 +45,11 @@ const PrinciplesManager = () => {
     } else {
       setPrinciples(data || []);
     }
-  };
+  }, [toast]);
+
+  useEffect(() => {
+    fetchPrinciples();
+  }, [fetchPrinciples]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -202,6 +202,9 @@ const PrinciplesManager = () => {
               <DialogContent className="sm:max-w-[500px]">
                 <DialogHeader>
                   <DialogTitle className="text-xl">{editingPrinciple ? "Edit Prinsip" : "Tambah Prinsip"}</DialogTitle>
+                  <DialogDescription>
+                    {editingPrinciple ? "Ubah informasi prinsip kerja" : "Tambahkan prinsip kerja baru untuk ditampilkan di landing page"}
+                  </DialogDescription>
                 </DialogHeader>
                 <form onSubmit={handleSubmit} className="space-y-5 pt-4">
                   <div>
@@ -262,14 +265,14 @@ const PrinciplesManager = () => {
                       </span>
                     )}
                   </div>
-                  <h3 className="font-semibold text-lg text-foreground mb-2">{principle.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{principle.description}</p>
+                  <h3 className="font-semibold text-lg text-card-foreground mb-2">{principle.title}</h3>
+                  <p className="text-sm text-card-foreground/80 leading-relaxed">{principle.description}</p>
                   <div className="flex items-center gap-2 mt-3">
                     <Switch
                       checked={principle.active}
                       onCheckedChange={() => handleToggleActive(principle.id, principle.active)}
                     />
-                    <Label className="text-xs text-muted-foreground">
+                    <Label className="text-xs text-card-foreground font-medium">
                       {principle.active ? "Aktif" : "Nonaktif"}
                     </Label>
                   </div>
@@ -282,7 +285,7 @@ const PrinciplesManager = () => {
                       onClick={() => handleReorder(principle.id, "up")}
                       disabled={index === 0}
                       title="Pindah ke atas"
-                      className="hover:bg-primary/10 hover:border-primary/30"
+                      className="hover:bg-primary/10 hover:border-primary/30 hover:text-primary"
                     >
                       <ArrowUp className="w-3.5 h-3.5" />
                     </Button>
@@ -292,12 +295,12 @@ const PrinciplesManager = () => {
                       onClick={() => handleReorder(principle.id, "down")}
                       disabled={index === principles.length - 1}
                       title="Pindah ke bawah"
-                      className="hover:bg-primary/10 hover:border-primary/30"
+                      className="hover:bg-primary/10 hover:border-primary/30 hover:text-primary"
                     >
                       <ArrowDown className="w-3.5 h-3.5" />
                     </Button>
                   </div>
-                  <Button size="sm" variant="outline" onClick={() => handleEdit(principle)} className="hover:bg-primary/10 hover:border-primary/30">
+                  <Button size="sm" variant="outline" onClick={() => handleEdit(principle)} className="hover:bg-primary/10 hover:border-primary/30 hover:text-primary">
                     <Edit className="w-4 h-4" />
                   </Button>
                   <Button size="sm" variant="destructive" onClick={() => handleDelete(principle.id)} className="hover:bg-destructive/90">

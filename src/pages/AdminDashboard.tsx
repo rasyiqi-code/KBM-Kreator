@@ -137,7 +137,7 @@ const AdminDashboard = () => {
   return (
     <SidebarProvider>
       <div className="flex min-h-screen w-full">
-        <Sidebar variant="inset" collapsible="icon">
+        <Sidebar variant="inset" collapsible="icon" className="border-r border-border bg-sidebar">
           <SidebarHeader className="border-b border-sidebar-border">
             <div className="flex items-center gap-2 px-2 py-4">
               <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center shadow-md">
@@ -161,9 +161,10 @@ const AdminDashboard = () => {
                           onClick={() => setActiveTab(item.value)}
                           isActive={activeTab === item.value}
                           tooltip={item.title}
+                          className="text-sidebar-foreground font-medium hover:bg-sidebar-accent hover:text-sidebar-accent-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground data-[active=true]:font-semibold"
                         >
-                          <Icon />
-                          <span>{item.title}</span>
+                          <Icon className="w-4 h-4 shrink-0" />
+                          <span className="font-medium">{item.title}</span>
                         </SidebarMenuButton>
                       </SidebarMenuItem>
                     );
@@ -175,25 +176,28 @@ const AdminDashboard = () => {
           <SidebarFooter className="border-t border-sidebar-border">
             <SidebarMenu>
               <SidebarMenuItem>
-                <SidebarMenuButton onClick={handleLogout} className="text-destructive hover:text-destructive hover:bg-destructive/10">
-                  <LogOut />
-                  <span>Keluar</span>
+                <SidebarMenuButton 
+                  onClick={handleLogout} 
+                  className="text-destructive hover:text-destructive-foreground hover:bg-destructive"
+                >
+                  <LogOut className="text-current" />
+                  <span className="text-current">Keluar</span>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>
           </SidebarFooter>
         </Sidebar>
         <SidebarInset>
-          <header className="sticky top-0 z-10 flex h-16 shrink-0 items-center gap-2 border-b bg-background px-4">
-            <SidebarTrigger className="-ml-1" />
+          <header className="sticky top-0 z-10 flex h-16 shrink-0 items-center gap-2 border-b bg-background px-4 shadow-sm">
+            <SidebarTrigger className="-ml-1 text-foreground hover:bg-primary/10" />
             <div className="flex-1" />
             <div className="flex items-center gap-2">
-              <div className="text-sm text-muted-foreground">
+              <div className="text-sm font-medium text-foreground">
                 {menuItems.find(item => item.value === activeTab)?.title || "Dashboard"}
               </div>
             </div>
           </header>
-          <main className="flex-1 overflow-auto p-4 md:p-6 lg:p-8">
+          <main className="flex-1 overflow-auto bg-background p-4 md:p-6 lg:p-8">
             <Suspense fallback={<ContentLoader />}>
               <ActiveComponent />
             </Suspense>

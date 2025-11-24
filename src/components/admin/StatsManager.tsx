@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { Plus, Trash2, Edit } from "lucide-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 interface Stat {
@@ -193,6 +193,9 @@ const StatsManager = () => {
               <DialogContent className="sm:max-w-[500px]">
                 <DialogHeader>
                   <DialogTitle className="text-xl">{editingStat ? "Edit Statistik" : "Tambah Statistik"}</DialogTitle>
+                  <DialogDescription>
+                    {editingStat ? "Ubah informasi statistik perusahaan" : "Tambahkan statistik baru untuk ditampilkan di landing page"}
+                  </DialogDescription>
                 </DialogHeader>
                 <form onSubmit={handleSubmit} className="space-y-5 pt-4">
                   <div>
@@ -252,7 +255,7 @@ const StatsManager = () => {
               <div className={`text-4xl font-bold ${getColorClass(stat.color)} mb-2`}>
                 {stat.value}
               </div>
-              <p className="text-sm font-medium text-muted-foreground mb-4">{stat.label}</p>
+              <p className="text-sm font-medium text-card-foreground mb-4">{stat.label}</p>
               <div className="flex justify-center gap-1.5 pt-3 border-t border-border/50">
                 <Button
                   size="sm"
@@ -260,7 +263,7 @@ const StatsManager = () => {
                   onClick={() => handleReorder(stat.id, "up")}
                   disabled={index === 0}
                   title="Pindah ke atas"
-                  className="hover:bg-primary/10 hover:border-primary/30"
+                  className="hover:bg-primary/10 hover:border-primary/30 hover:text-primary"
                 >
                   ↑
                 </Button>
@@ -270,11 +273,11 @@ const StatsManager = () => {
                   onClick={() => handleReorder(stat.id, "down")}
                   disabled={index === stats.length - 1}
                   title="Pindah ke bawah"
-                  className="hover:bg-primary/10 hover:border-primary/30"
+                  className="hover:bg-primary/10 hover:border-primary/30 hover:text-primary"
                 >
                   ↓
                 </Button>
-                <Button size="sm" variant="outline" onClick={() => handleEdit(stat)} className="hover:bg-primary/10 hover:border-primary/30">
+                <Button size="sm" variant="outline" onClick={() => handleEdit(stat)} className="hover:bg-primary/10 hover:border-primary/30 hover:text-primary">
                   <Edit className="w-3.5 h-3.5" />
                 </Button>
                 <Button size="sm" variant="destructive" onClick={() => handleDelete(stat.id)} className="hover:bg-destructive/90">

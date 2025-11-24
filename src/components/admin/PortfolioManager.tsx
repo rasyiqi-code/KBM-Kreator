@@ -493,7 +493,7 @@ const PortfolioManager = () => {
                     className="w-28 h-28 object-cover rounded-lg border border-border/50 shadow-sm"
                   />
                   <div className="flex-1">
-                    <h3 className="font-semibold text-lg text-foreground mb-1">{item.title}</h3>
+                    <h3 className="font-semibold text-lg text-card-foreground mb-1">{item.title}</h3>
                     <div className="flex items-center gap-2 mb-2">
                       <span className="text-xs font-medium bg-secondary/10 text-secondary px-2.5 py-1 rounded-md border border-secondary/20">
                         {item.category}
@@ -505,7 +505,7 @@ const PortfolioManager = () => {
                       )}
                     </div>
                     {item.description && (
-                      <p className="text-sm text-muted-foreground mt-1">{item.description}</p>
+                      <p className="text-sm text-card-foreground/80 mt-1">{item.description}</p>
                     )}
                     <div className="flex gap-3 mt-3">
                       {item.youtube_url && (
@@ -540,7 +540,7 @@ const PortfolioManager = () => {
                         onClick={() => handleReorder(item.id, "up")}
                         disabled={index === 0}
                         title="Pindah ke atas"
-                        className="hover:bg-primary/10 hover:border-primary/30"
+                        className="hover:bg-primary/10 hover:border-primary/30 hover:text-primary"
                       >
                         <ArrowUp className="w-3.5 h-3.5" />
                       </Button>
@@ -550,7 +550,7 @@ const PortfolioManager = () => {
                         onClick={() => handleReorder(item.id, "down")}
                         disabled={index === items.length - 1}
                         title="Pindah ke bawah"
-                        className="hover:bg-primary/10 hover:border-primary/30"
+                        className="hover:bg-primary/10 hover:border-primary/30 hover:text-primary"
                       >
                         <ArrowDown className="w-3.5 h-3.5" />
                       </Button>
@@ -559,7 +559,7 @@ const PortfolioManager = () => {
                       size="sm"
                       variant="outline"
                       onClick={() => handleEdit(item)}
-                      className="hover:bg-primary/10 hover:border-primary/30"
+                      className="hover:bg-primary/10 hover:border-primary/30 hover:text-primary"
                     >
                       <Edit className="w-4 h-4" />
                     </Button>
