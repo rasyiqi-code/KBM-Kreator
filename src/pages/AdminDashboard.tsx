@@ -84,23 +84,23 @@ const AdminDashboard = () => {
 
       <main className="container mx-auto px-4 py-6 md:py-8">
         <Tabs defaultValue="portfolio" className="w-full">
-          <TabsList className="grid grid-cols-3 lg:grid-cols-6 mb-6 md:mb-8 w-full bg-card/50 border border-border/50 shadow-sm">
-            <TabsTrigger value="portfolio" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+          <TabsList className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 mb-6 md:mb-8 w-full bg-card/50 border border-border/50 shadow-sm overflow-x-auto">
+            <TabsTrigger value="portfolio" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground whitespace-nowrap">
               Portfolio
             </TabsTrigger>
-            <TabsTrigger value="hero" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+            <TabsTrigger value="hero" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground whitespace-nowrap">
               Hero
             </TabsTrigger>
-            <TabsTrigger value="about" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+            <TabsTrigger value="about" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground whitespace-nowrap">
               About
             </TabsTrigger>
-            <TabsTrigger value="principles" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+            <TabsTrigger value="principles" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground whitespace-nowrap">
               Prinsip
             </TabsTrigger>
-            <TabsTrigger value="stats" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+            <TabsTrigger value="stats" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground whitespace-nowrap">
               Statistik
             </TabsTrigger>
-            <TabsTrigger value="promo" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+            <TabsTrigger value="promo" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground whitespace-nowrap">
               Promo
             </TabsTrigger>
           </TabsList>
