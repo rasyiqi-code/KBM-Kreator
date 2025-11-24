@@ -5,8 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { Save } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Save, Info } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
 interface AboutContent {
   heading: string;
@@ -58,21 +58,39 @@ const AboutManager = () => {
     setLoading(true);
 
     try {
-      const { error } = await supabase
+      // Check if data exists
+      const { data: existingData } = await supabase
         .from("site_content")
-        .update({ content: content as any })
-        .eq("section", "about");
+        .select("id")
+        .eq("section", "about")
+        .single();
 
-      if (error) throw error;
+      if (existingData) {
+        // Update existing
+        const { error } = await supabase
+          .from("site_content")
+          .update({ content: content as never })
+          .eq("section", "about");
+
+        if (error) throw error;
+      } else {
+        // Insert new
+        const { error } = await supabase
+          .from("site_content")
+          .insert([{ section: "about", content: content as never }]);
+
+        if (error) throw error;
+      }
 
       toast({
         title: "Berhasil",
-        description: "Konten about berhasil diperbarui",
+        description: "Konten about berhasil disimpan",
       });
     } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : "Gagal menyimpan konten";
       toast({
         title: "Error",
-        description: "Gagal memperbarui konten",
+        description: errorMessage,
         variant: "destructive",
       });
     } finally {
@@ -81,12 +99,20 @@ const AboutManager = () => {
   };
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Edit About Section</CardTitle>
+    <Card className="border-border/50 shadow-lg">
+      <CardHeader className="bg-gradient-to-r from-primary/5 to-secondary/5 border-b border-border/50">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+            <Info className="w-5 h-5 text-primary" />
+          </div>
+          <div>
+            <CardTitle className="text-xl">Edit About Section</CardTitle>
+            <CardDescription>Kelola informasi tentang perusahaan</CardDescription>
+          </div>
+        </div>
       </CardHeader>
-      <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-4">
+      <CardContent className="pt-6">
+        <form onSubmit={handleSubmit} className="space-y-5">
           <div>
             <Label htmlFor="heading">Heading</Label>
             <Input
@@ -175,10 +201,12 @@ const AboutManager = () => {
             />
           </div>
 
-          <Button type="submit" disabled={loading} className="w-full">
-            <Save className="w-4 h-4 mr-2" />
-            {loading ? "Menyimpan..." : "Simpan Perubahan"}
-          </Button>
+          <div className="pt-4 border-t border-border/50">
+            <Button type="submit" disabled={loading} className="w-full bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary shadow-md">
+              <Save className="w-4 h-4 mr-2" />
+              {loading ? "Menyimpan..." : "Simpan Perubahan"}
+            </Button>
+          </div>
         </form>
       </CardContent>
     </Card>

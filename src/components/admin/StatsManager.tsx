@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { Plus, Trash2, Edit } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
@@ -62,9 +62,20 @@ const StatsManager = () => {
         if (error) throw error;
         toast({ title: "Berhasil", description: "Statistik berhasil diupdate" });
       } else {
+        // Get max display_order
+        const { data: existingStats } = await supabase
+          .from("company_stats")
+          .select("display_order")
+          .order("display_order", { ascending: false })
+          .limit(1);
+
+        const maxOrder = existingStats && existingStats.length > 0 
+          ? existingStats[0].display_order + 1 
+          : 0;
+
         const { error } = await supabase
           .from("company_stats")
-          .insert([formData]);
+          .insert([{ ...formData, display_order: maxOrder }]);
 
         if (error) throw error;
         toast({ title: "Berhasil", description: "Statistik berhasil ditambahkan" });
@@ -159,84 +170,97 @@ const StatsManager = () => {
   };
 
   return (
-    <div className="space-y-4">
-      <div className="flex justify-between items-center">
-        <h2 className="text-xl font-bold">Company Statistics ({stats.length})</h2>
-        <Dialog open={open} onOpenChange={setOpen}>
-          <DialogTrigger asChild>
-            <Button onClick={() => { setEditingStat(null); setFormData({ label: "", value: "", color: "primary" }); }}>
-              <Plus className="w-4 h-4 mr-2" />
-              Tambah Statistik
-            </Button>
-          </DialogTrigger>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>{editingStat ? "Edit Statistik" : "Tambah Statistik"}</DialogTitle>
-            </DialogHeader>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <Label htmlFor="value">Nilai</Label>
-                <Input
-                  id="value"
-                  value={formData.value}
-                  onChange={(e) => setFormData({ ...formData, value: e.target.value })}
-                  placeholder="1,000+"
-                  required
-                />
+    <div className="space-y-6">
+      <Card className="border-border/50 shadow-lg">
+        <CardHeader className="bg-gradient-to-r from-primary/5 to-secondary/5 border-b border-border/50">
+          <div className="flex justify-between items-center">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                <span className="text-lg">📊</span>
               </div>
-
               <div>
-                <Label htmlFor="label">Label</Label>
-                <Input
-                  id="label"
-                  value={formData.label}
-                  onChange={(e) => setFormData({ ...formData, label: e.target.value })}
-                  placeholder="Cover Dibuat"
-                  required
-                />
+                <h2 className="text-xl font-bold">Company Statistics</h2>
+                <p className="text-sm text-muted-foreground">{stats.length} statistik tersedia</p>
               </div>
+            </div>
+            <Dialog open={open} onOpenChange={setOpen}>
+              <DialogTrigger asChild>
+                <Button onClick={() => { setEditingStat(null); setFormData({ label: "", value: "", color: "primary" }); }}>
+                  <Plus className="w-4 h-4 mr-2" />
+                  Tambah Statistik
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[500px]">
+                <DialogHeader>
+                  <DialogTitle className="text-xl">{editingStat ? "Edit Statistik" : "Tambah Statistik"}</DialogTitle>
+                </DialogHeader>
+                <form onSubmit={handleSubmit} className="space-y-5 pt-4">
+                  <div>
+                    <Label htmlFor="value">Nilai</Label>
+                    <Input
+                      id="value"
+                      value={formData.value}
+                      onChange={(e) => setFormData({ ...formData, value: e.target.value })}
+                      placeholder="1,000+"
+                      required
+                    />
+                  </div>
 
-              <div>
-                <Label htmlFor="color">Warna</Label>
-                <Select
-                  value={formData.color}
-                  onValueChange={(value) => setFormData({ ...formData, color: value })}
-                >
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="primary">Primary</SelectItem>
-                    <SelectItem value="secondary">Secondary</SelectItem>
-                    <SelectItem value="accent">Accent</SelectItem>
-                    <SelectItem value="primary-dark">Primary Dark</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
+                  <div>
+                    <Label htmlFor="label">Label</Label>
+                    <Input
+                      id="label"
+                      value={formData.label}
+                      onChange={(e) => setFormData({ ...formData, label: e.target.value })}
+                      placeholder="Cover Dibuat"
+                      required
+                    />
+                  </div>
 
-              <Button type="submit" className="w-full">
-                {editingStat ? "Update" : "Tambah"}
-              </Button>
-            </form>
-          </DialogContent>
-        </Dialog>
-      </div>
+                  <div>
+                    <Label htmlFor="color">Warna</Label>
+                    <Select
+                      value={formData.color}
+                      onValueChange={(value) => setFormData({ ...formData, color: value })}
+                    >
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="primary">Primary</SelectItem>
+                        <SelectItem value="secondary">Secondary</SelectItem>
+                        <SelectItem value="accent">Accent</SelectItem>
+                        <SelectItem value="primary-dark">Primary Dark</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <Button type="submit" className="w-full bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary shadow-md">
+                    {editingStat ? "Update" : "Tambah"}
+                  </Button>
+                </form>
+              </DialogContent>
+            </Dialog>
+          </div>
+        </CardHeader>
+      </Card>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
         {stats.map((stat, index) => (
-          <Card key={stat.id}>
-            <CardContent className="p-4 text-center">
-              <div className={`text-3xl font-bold ${getColorClass(stat.color)} mb-1`}>
+          <Card key={stat.id} className="border-border/50 shadow-md transition-all hover:shadow-lg hover:scale-105">
+            <CardContent className="p-6 text-center">
+              <div className={`text-4xl font-bold ${getColorClass(stat.color)} mb-2`}>
                 {stat.value}
               </div>
-              <p className="text-sm text-muted-foreground mb-3">{stat.label}</p>
-              <div className="flex justify-center gap-2">
+              <p className="text-sm font-medium text-muted-foreground mb-4">{stat.label}</p>
+              <div className="flex justify-center gap-1.5 pt-3 border-t border-border/50">
                 <Button
                   size="sm"
                   variant="outline"
                   onClick={() => handleReorder(stat.id, "up")}
                   disabled={index === 0}
                   title="Pindah ke atas"
+                  className="hover:bg-primary/10 hover:border-primary/30"
                 >
                   ↑
                 </Button>
@@ -246,14 +270,15 @@ const StatsManager = () => {
                   onClick={() => handleReorder(stat.id, "down")}
                   disabled={index === stats.length - 1}
                   title="Pindah ke bawah"
+                  className="hover:bg-primary/10 hover:border-primary/30"
                 >
                   ↓
                 </Button>
-                <Button size="sm" variant="outline" onClick={() => handleEdit(stat)}>
-                  <Edit className="w-3 h-3" />
+                <Button size="sm" variant="outline" onClick={() => handleEdit(stat)} className="hover:bg-primary/10 hover:border-primary/30">
+                  <Edit className="w-3.5 h-3.5" />
                 </Button>
-                <Button size="sm" variant="destructive" onClick={() => handleDelete(stat.id)}>
-                  <Trash2 className="w-3 h-3" />
+                <Button size="sm" variant="destructive" onClick={() => handleDelete(stat.id)} className="hover:bg-destructive/90">
+                  <Trash2 className="w-3.5 h-3.5" />
                 </Button>
               </div>
             </CardContent>

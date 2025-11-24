@@ -1,6 +1,7 @@
--- Create storage bucket for portfolio images
+-- Create storage bucket for portfolio images (skip if already exists)
 INSERT INTO storage.buckets (id, name, public)
-VALUES ('portfolio', 'portfolio', true);
+VALUES ('portfolio', 'portfolio', true)
+ON CONFLICT (id) DO NOTHING;
 
 -- Create portfolio items table
 CREATE TABLE public.portfolio_items (
