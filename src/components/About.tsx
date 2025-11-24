@@ -178,10 +178,10 @@ const About = () => {
                 >
                   <div className="absolute top-0 right-0 w-20 h-20 bg-primary/5 rounded-full blur-2xl"></div>
                   <div className="relative text-center space-y-2">
-                    <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-br from-primary via-primary to-secondary bg-clip-text text-transparent">
+                    <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white">
                       {stat.value}
                     </div>
-                    <p className="text-xs sm:text-sm md:text-base text-muted-foreground font-medium leading-tight">
+                    <p className="text-xs sm:text-sm md:text-base text-white font-semibold leading-tight">
                       {stat.label}
                     </p>
                   </div>
@@ -211,11 +211,11 @@ const About = () => {
               <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary/10 via-primary/5 to-transparent p-6 sm:p-8 border border-primary/20 hover:border-primary/40 transition-all duration-300 hover:shadow-lg">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl"></div>
                 <div className="relative">
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/20 mb-4">
-                    <Target className="w-4 h-4 text-primary" />
-                    <span className="text-sm font-semibold text-primary">VISI</span>
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/30 border border-primary/40 mb-4">
+                    <Target className="w-4 h-4 text-white" />
+                    <span className="text-sm font-bold text-white">VISI</span>
                   </div>
-                  <p className="text-base sm:text-lg text-foreground leading-relaxed font-medium">
+                  <p className="text-base sm:text-lg text-white leading-relaxed font-semibold">
                     "{content.visi}"
                   </p>
                 </div>
@@ -226,11 +226,11 @@ const About = () => {
               <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-secondary/10 via-secondary/5 to-transparent p-6 sm:p-8 border border-secondary/20 hover:border-secondary/40 transition-all duration-300 hover:shadow-lg">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-secondary/10 rounded-full blur-3xl"></div>
                 <div className="relative">
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary/20 mb-4">
-                    <Target className="w-4 h-4 text-secondary" />
-                    <span className="text-sm font-semibold text-secondary">MISI</span>
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary/30 border border-secondary/40 mb-4">
+                    <Target className="w-4 h-4 text-white" />
+                    <span className="text-sm font-bold text-white">MISI</span>
                   </div>
-                  <p className="text-base sm:text-lg text-foreground leading-relaxed font-medium">
+                  <p className="text-base sm:text-lg text-white leading-relaxed font-semibold">
                     {content.misi}
                   </p>
                 </div>
@@ -261,7 +261,7 @@ const About = () => {
                     >
                       <div className="space-y-4">
                         <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-xl ${color.icon} flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-3`}>
-                          <Icon className={`w-6 h-6 sm:w-7 sm:h-7 ${color.text}`} />
+                          <Icon className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
                         </div>
                         <div>
                           <h4 className="text-base sm:text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors">

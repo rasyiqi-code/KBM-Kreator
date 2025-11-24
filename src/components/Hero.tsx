@@ -48,8 +48,8 @@ const Hero = () => {
       <div className="container mx-auto relative z-10 max-w-6xl">
         <div className="max-w-5xl mx-auto text-center space-y-6 sm:space-y-8">
           <div className="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-primary/10 backdrop-blur-sm border border-primary/30 mb-2 sm:mb-4 animate-fade-in shadow-lg">
-            <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
-            <span className="text-xs sm:text-sm font-semibold text-primary">{content.badge}</span>
+            <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+            <span className="text-xs sm:text-sm font-semibold text-white">{content.badge}</span>
           </div>
           
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 text-foreground leading-tight animate-fade-in-up">
