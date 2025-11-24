@@ -7,6 +7,7 @@ const Hero = lazy(() => import("@/components/Hero"));
 const About = lazy(() => import("@/components/About"));
 const Portfolio = lazy(() => import("@/components/Portfolio"));
 const Promo = lazy(() => import("@/components/Promo"));
+const CTA = lazy(() => import("@/components/CTA"));
 
 // Loading component for sections
 const SectionLoader = () => (
@@ -22,7 +23,7 @@ const SectionLoader = () => (
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-x-hidden">
       <Suspense fallback={<SectionLoader />}>
         <Hero />
       </Suspense>
@@ -34,6 +35,9 @@ const Index = () => {
       </Suspense>
       <Suspense fallback={<SectionLoader />}>
         <Promo />
+      </Suspense>
+      <Suspense fallback={<SectionLoader />}>
+        <CTA />
       </Suspense>
       <Footer />
       <WhatsAppFloat />

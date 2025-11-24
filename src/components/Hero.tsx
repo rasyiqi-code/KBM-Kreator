@@ -39,41 +39,54 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-[100vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary/5 via-background to-secondary/5 px-4 py-16 md:py-20">
-      <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+    <section className="relative min-h-[100vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary/10 via-background via-50% to-secondary/10 px-[7px] sm:px-4 py-12 sm:py-16 md:py-20">
+      {/* Animated background elements */}
+      <div className="absolute inset-0 bg-grid-pattern opacity-[0.03]"></div>
+      <div className="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-20 right-10 w-96 h-96 bg-secondary/5 rounded-full blur-3xl animate-pulse animation-delay-200"></div>
       
-      <div className="container mx-auto relative z-10 py-0 px-0">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-primary-light/20 border border-primary/20 mb-4 md:mb-6 animate-fade-in bg-slate-50">
-            <BookOpen className="w-3.5 h-3.5 md:w-4 md:h-4 text-primary" />
-            <span className="text-xs md:text-sm font-medium text-primary">{content.badge}</span>
+      <div className="container mx-auto relative z-10 max-w-6xl">
+        <div className="max-w-5xl mx-auto text-center space-y-6 sm:space-y-8">
+          <div className="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-primary/10 backdrop-blur-sm border border-primary/30 mb-2 sm:mb-4 animate-fade-in shadow-lg">
+            <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
+            <span className="text-xs sm:text-sm font-semibold text-primary">{content.badge}</span>
           </div>
           
-          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-4 md:mb-6 text-foreground animate-fade-in-up">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 text-foreground leading-tight animate-fade-in-up">
+            <span className="bg-gradient-to-r from-foreground via-foreground to-foreground/80 bg-clip-text text-transparent">
             {content.heading}
+            </span>
           </h1>
           
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground mb-6 md:mb-8 max-w-2xl mx-auto animate-fade-in-up animation-delay-200">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground mb-4 sm:mb-6 max-w-3xl mx-auto animate-fade-in-up animation-delay-200 leading-relaxed">
             {content.subheading1}
           </p>
           
-          <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-8 md:mb-10 max-w-3xl mx-auto animate-fade-in-up animation-delay-300">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground/90 mb-8 sm:mb-10 md:mb-12 max-w-3xl mx-auto animate-fade-in-up animation-delay-300 leading-relaxed">
             {content.subheading2}
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center animate-fade-in-up animation-delay-400">
-            <Button size="lg" className="w-full sm:w-auto min-h-[48px] text-base md:text-lg group">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center animate-fade-in-up animation-delay-400">
+            <Button 
+              size="lg" 
+              className="w-full sm:w-auto min-h-[52px] sm:min-h-[56px] text-base sm:text-lg px-8 sm:px-10 group shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+            >
               {content.cta1_text}
-              <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
-            <Button size="lg" variant="outline" className="w-full sm:w-auto min-h-[48px] text-base md:text-lg">
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="w-full sm:w-auto min-h-[52px] sm:min-h-[56px] text-base sm:text-lg px-8 sm:px-10 border-2 hover:bg-primary/5 transition-all duration-300 hover:scale-105"
+            >
               {content.cta2_text}
             </Button>
           </div>
         </div>
       </div>
       
-      <div className="absolute bottom-0 left-0 right-0 h-20 md:h-32 bg-gradient-to-t from-background to-transparent"></div>
+      {/* Smooth gradient transition to next section */}
+      <div className="absolute bottom-0 left-0 right-0 h-24 sm:h-32 md:h-40 bg-gradient-to-t from-background via-background/80 to-transparent pointer-events-none"></div>
     </section>
   );
 };
