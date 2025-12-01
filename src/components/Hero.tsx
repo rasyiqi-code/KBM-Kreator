@@ -68,18 +68,17 @@ const Hero = () => {
           
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center animate-fade-in-up animation-delay-400">
             <Button 
-              size="lg" 
-              className="w-full sm:w-auto min-h-[52px] sm:min-h-[56px] text-base sm:text-lg px-8 sm:px-10 group shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-            >
-              {content.cta1_text}
-              <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <Button 
+              asChild
               size="lg" 
               variant="outline" 
               className="w-full sm:w-auto min-h-[52px] sm:min-h-[56px] text-base sm:text-lg px-8 sm:px-10 border-2 hover:bg-primary/5 transition-all duration-300 hover:scale-105"
             >
-              {content.cta2_text}
+              <a 
+                href="#portfolio"
+                onClick={(e) => { e.preventDefault(); document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' }); }}
+              >
+                {content.cta2_text}
+              </a>
             </Button>
           </div>
         </div>

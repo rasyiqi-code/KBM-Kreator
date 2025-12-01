@@ -13,12 +13,15 @@ const CTA = () => {
           </div>
           
           <div className="flex justify-center">
-            <Button 
-              size="lg" 
+            <Button
+              asChild
+              size="lg"
               className="group min-h-[56px] sm:min-h-[60px] text-base sm:text-lg px-8 sm:px-12 md:px-16 rounded-full shadow-md hover:shadow-lg transition-all duration-300"
-            >
-              Dapatkan Promo
-              <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
+           >
+              <a href="https://wa.me/6281357555797" target="_blank" rel="noopener noreferrer">
+                Dapatkan Promo
+                <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
+              </a>
             </Button>
           </div>
         </div>

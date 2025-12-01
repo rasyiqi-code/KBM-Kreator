@@ -1,4 +1,4 @@
-import { BookOpen, Facebook, Instagram, Twitter, Youtube } from "lucide-react";
+import { BookOpen, Instagram } from "lucide-react";
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   return (
@@ -6,6 +6,8 @@ const Footer = () => {
       <div className="container mx-auto px-[7px] sm:px-4 py-10 sm:py-12 md:py-16 max-w-6xl">
         <div className="max-w-3xl mx-auto mb-8 sm:mb-10 md:mb-12">
           <div className="text-center space-y-4 sm:space-y-5">
+            
+            
             <div className="flex items-center justify-center gap-3 mb-4 sm:mb-5">
               <div className="p-2 sm:p-3 rounded-xl bg-primary/10">
                 <BookOpen className="w-6 h-6 sm:w-8 sm:h-8 text-primary" />
@@ -18,7 +20,7 @@ const Footer = () => {
             <p className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
               Partner kreatif terpercaya untuk mewujudkan karya terbaik Anda sejak 2017.
             </p>
-            <div className="flex justify-center gap-3 sm:gap-4 pt-2">
+            <div className="hidden">
               <a 
                 href="https://www.instagram.com/kbmkreatoryogyakarta/" 
                 target="_blank" 

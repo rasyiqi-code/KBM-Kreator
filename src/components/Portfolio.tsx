@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Instagram, Youtube } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import portfolioLayout1 from "@/assets/portfolio-layout-1.jpg";
 import portfolioCover1 from "@/assets/portfolio-cover-1.jpg";
 import portfolioLayout2 from "@/assets/portfolio-layout-2.jpg";
@@ -116,7 +117,7 @@ const Portfolio = () => {
   const aestheticItems = items.filter(item => item.category === "aesthetic" || item.category === "photo");
 
   return (
-    <section className="py-12 sm:py-16 md:py-24 px-[7px] sm:px-4 bg-gradient-to-b from-muted/10 via-background to-muted/10">
+    <section id="portfolio" className="py-12 sm:py-16 md:py-24 px-[7px] sm:px-4 bg-gradient-to-b from-muted/10 via-background to-muted/10">
       <div className="container mx-auto max-w-7xl">
         <div className="text-center mb-10 sm:mb-12 md:mb-16 space-y-3 sm:space-y-4">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">
@@ -137,7 +138,7 @@ const Portfolio = () => {
           <>
             {/* Featured Section */}
             {featuredItems.length > 0 && (
-              <div className="mb-10 sm:mb-12 md:mb-16">
+              <div id="portfolio-grid" className="mb-10 sm:mb-12 md:mb-16">
                 <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-foreground">Tim & Layanan Kami</h3>
                 <div className="grid sm:grid-cols-2 gap-4 sm:gap-5 md:gap-6">
                   {featuredItems.map((item) => (
@@ -276,6 +277,46 @@ const Portfolio = () => {
             )}
           </>
         )}
+
+        <div className="text-center mt-10 sm:mt-12">
+          <p className="text-base sm:text-lg font-semibold text-foreground">Cek portofolio lebih detail pada akun di bawah ini</p>
+          <div className="flex justify-center gap-3 sm:gap-4 mt-3">
+            <a
+              href="https://www.instagram.com/kbmkreatoryogyakarta/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-md hover:shadow-lg"
+              aria-label="Instagram"
+            >
+              <Instagram className="w-5 h-5 sm:w-6 sm:h-6" />
+            </a>
+            <a
+              href="https://www.tiktok.com/@kbm.kreator.yogya"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-secondary text-secondary-foreground hover:bg-secondary/90 flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-md hover:shadow-lg"
+              aria-label="TikTok"
+            >
+              <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
+              </svg>
+            </a>
+            <a
+              href="https://www.youtube.com/@kbmkreator"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-red-600 text-white hover:bg-red-700 flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-md hover:shadow-lg"
+              aria-label="YouTube"
+            >
+              <Youtube className="w-5 h-5 sm:w-6 sm:h-6" />
+            </a>
+          </div>
+          <div className="flex justify-center mt-4">
+            <Button asChild size="lg" variant="secondary" className="rounded-full">
+              <a href="#portfolio-grid">Lihat Portofolio</a>
+            </Button>
+          </div>
+        </div>
       </div>
     </section>
   );
