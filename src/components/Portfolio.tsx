@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { ExternalLink, Instagram, Youtube } from "lucide-react";
+import { Instagram, Youtube } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import portfolioLayout1 from "@/assets/portfolio-layout-1.jpg";
 import portfolioCover1 from "@/assets/portfolio-cover-1.jpg";
@@ -168,7 +168,7 @@ const Portfolio = () => {
                                   rel="noopener noreferrer"
                                   className="text-xs sm:text-sm flex items-center gap-1.5 hover:underline bg-white/20 px-3 py-1.5 rounded-full backdrop-blur-sm transition-all hover:bg-white/30"
                                 >
-                                  <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4" />
+                                  <Youtube className="w-3 h-3 sm:w-4 sm:h-4" />
                                   YouTube
                                 </a>
                               )}
@@ -179,7 +179,7 @@ const Portfolio = () => {
                                   rel="noopener noreferrer"
                                   className="text-xs sm:text-sm flex items-center gap-1.5 hover:underline bg-white/20 px-3 py-1.5 rounded-full backdrop-blur-sm transition-all hover:bg-white/30"
                                 >
-                                  <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4" />
+                                  <Instagram className="w-3 h-3 sm:w-4 sm:h-4" />
                                   Instagram
                                 </a>
                               )}
@@ -278,44 +278,10 @@ const Portfolio = () => {
           </>
         )}
 
-        <div className="text-center mt-10 sm:mt-12">
-          <p className="text-base sm:text-lg font-semibold text-foreground">Cek portofolio lebih detail pada akun di bawah ini</p>
-          <div className="flex justify-center gap-3 sm:gap-4 mt-3">
-            <a
-              href="https://www.instagram.com/kbmkreatoryogyakarta/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-md hover:shadow-lg"
-              aria-label="Instagram"
-            >
-              <Instagram className="w-5 h-5 sm:w-6 sm:h-6" />
-            </a>
-            <a
-              href="https://www.tiktok.com/@kbm.kreator.yogya"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-secondary text-secondary-foreground hover:bg-secondary/90 flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-md hover:shadow-lg"
-              aria-label="TikTok"
-            >
-              <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
-              </svg>
-            </a>
-            <a
-              href="https://www.youtube.com/@kbmkreator"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-red-600 text-white hover:bg-red-700 flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-md hover:shadow-lg"
-              aria-label="YouTube"
-            >
-              <Youtube className="w-5 h-5 sm:w-6 sm:h-6" />
-            </a>
-          </div>
-          <div className="flex justify-center mt-4">
-            <Button asChild size="lg" variant="secondary" className="rounded-full">
-              <a href="#portfolio-grid">Lihat Portofolio</a>
-            </Button>
-          </div>
+        <div className="flex justify-center mt-10 sm:mt-12">
+          <Button asChild size="lg" variant="secondary" className="rounded-full">
+            <a href="https://wa.me/6281357555797" target="_blank" rel="noopener noreferrer">Hubungi Admin</a>
+          </Button>
         </div>
       </div>
     </section>
