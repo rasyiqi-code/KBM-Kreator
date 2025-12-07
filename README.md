@@ -2,10 +2,6 @@
 
 Portfolio website dengan admin dashboard untuk mengelola konten landing page secara dinamis.
 
-## 📋 Project Info
-
-**Lovable Project URL**: https://lovable.dev/projects/eeedfb28-bbd4-431f-98fc-8cc188b3f714
-
 ## 🚀 Quick Start
 
 ### Prerequisites
