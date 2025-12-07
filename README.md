@@ -148,10 +148,6 @@ Admin dashboard menggunakan Supabase Authentication:
 
 Ada beberapa cara untuk mengedit code:
 
-**Via Lovable**
-- Kunjungi [Lovable Project](https://lovable.dev/projects/eeedfb28-bbd4-431f-98fc-8cc188b3f714)
-- Changes akan otomatis di-commit ke repo
-
 **Via IDE Lokal**
 - Clone repo dan push changes
 - Changes akan ter-reflect di Lovable
